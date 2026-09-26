@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build .mrpack",
+      "type": "shell",
+      "command": "python tools/modpack.py build",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Update all mods",
+      "type": "shell",
+      "command": "python tools/modpack.py update",
+      "problemMatcher": []
+    },
+    {
+      "label": "Update one mod",
+      "type": "shell",
+      "command": "python tools/modpack.py update ${input:slugs}",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "slugs",
+      "type": "promptString",
+      "description": "Modrinth slug(s) to update, space-separated (e.g. skyhanni odin)"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[pack]
+name = "SkyBlock QoL"
+version = "1.0.0"
+summary = "Fabric modpack for Hypixel SkyBlock: vanilla QoL, performance, dungeons, fishing, farming and more."
+author = "therickshow"
+
+[minecraft]
+version = "26.2"
+
+[loader]
+name = "fabric"
+# "latest" = newest stable Fabric Loader for the Minecraft version above,
+# resolved and pinned in modpack.lock.json by `tools/modpack.py update`.
+version = "latest"

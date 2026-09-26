@@ -1,0 +1,1074 @@
+{
+  "minecraft": "26.2",
+  "loader": {
+    "name": "fabric",
+    "version": "0.19.5"
+  },
+  "mods": [
+    {
+      "slug": "skyblocker-liap",
+      "title": "Skyblocker • Hypixel Skyblock",
+      "project_id": "y6DuFGwJ",
+      "version_id": "Kegf578l",
+      "version": "v6.10.4+26.2",
+      "channel": "release",
+      "published": "2026-09-15",
+      "file": "skyblocker-6.10.4+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/y6DuFGwJ/versions/Kegf578l/skyblocker-6.10.4%2B26.2.jar",
+      "size": 19980109,
+      "sha1": "ea9b7a4db88cb814c2ca8ef418e71d2359a4ae40",
+      "sha512": "6c11fa897495b27f7bc686c2d15e890a13f37267d523ca81a5b0613ad9267debe684335b89be5c06bea7c705266da6a48174101500da77abbbfe86280bfe1edb",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices, SkyBlock items/recipes in JEI"
+    },
+    {
+      "slug": "skyhanni",
+      "title": "SkyHanni for Hypixel SkyBlock",
+      "project_id": "byNkmv5G",
+      "version_id": "YIQcPmgw",
+      "version": "9.0.0",
+      "channel": "release",
+      "published": "2026-09-16",
+      "file": "SkyHanni-9.0.0-mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/byNkmv5G/versions/YIQcPmgw/SkyHanni-9.0.0-mc26.2.jar",
+      "size": 30190414,
+      "sha1": "31e419b6ddc9be1634212cbfd599ae5c00574716",
+      "sha512": "804e415edfce5aa810dbfd997f49f71446f2b60f2418868747df72fd27c0c5136689c22b3a157d5963fb2cfbb435c0211dabaa8c290b7343a49823045ce47fb4",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "1A2mKfBx",
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "Garden/farming overlays (crop milestones, visitor helper, money/hr, pests), plus slayer, mining, fishing, Diana and Rift features. `/sh`"
+    },
+    {
+      "slug": "skyblock-profile-viewer",
+      "title": "SkyBlock Profile Viewer",
+      "project_id": "8yqXwFLl",
+      "version_id": "2n5LJtoe",
+      "version": "1.8.9",
+      "channel": "release",
+      "published": "2026-08-07",
+      "file": "SkyBlockPv-1.8.9-26.2.jar",
+      "url": "https://cdn.modrinth.com/data/8yqXwFLl/versions/2n5LJtoe/SkyBlockPv-1.8.9-26.2.jar",
+      "size": 11112349,
+      "sha1": "bd3e363f693bada294f2751de07e5e615072ffee",
+      "sha512": "f5fb2f59e233d221ec439d181f4c5378dc04bb3731d8ab6cb2c02542f677cf31a8cf0dc7bbaa2d1489558b4d6591cba441205cb62b5df263c9e1349871f04fa6",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "`/pv <player>`: full profile viewer, handy for party-finder checks"
+    },
+    {
+      "slug": "skyblock-enhanced-storage",
+      "title": "Skyblock Enhanced Storage",
+      "project_id": "ICyROmSc",
+      "version_id": "CFmXI13f",
+      "version": "v1.2.2-mc26.2",
+      "channel": "release",
+      "published": "2026-08-31",
+      "file": "enhanced_storage-1.2.2+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/ICyROmSc/versions/CFmXI13f/enhanced_storage-1.2.2%2B26.2.jar",
+      "size": 212426,
+      "sha1": "5f2fb2f420864ed4db74974607235ef184f86b0a",
+      "sha512": "070b3291291ea6f3a339f1bc8d2f42d54062622d282ed49e61acc680f209d81b4fc89f6e07d81b90890edde1895727bbef032e0a4c1c0c797ae9ba18942a1ce9",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "AOEDs9Al",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "All Ender Chest + Backpack pages in one searchable screen"
+    },
+    {
+      "slug": "modern-warp-menu",
+      "title": "Modern Warp Menu",
+      "project_id": "3GNyRk4I",
+      "version_id": "S1zuZcDp",
+      "version": "0.2.4+26.2",
+      "channel": "release",
+      "published": "2026-08-12",
+      "file": "modernwarpmenu-0.2.4+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/3GNyRk4I/versions/S1zuZcDp/modernwarpmenu-0.2.4%2B26.2.jar",
+      "size": 19836574,
+      "sha1": "b098652a3a6ecafd00d384ee2139220365c1e55b",
+      "sha512": "2f7a829a45a331b4d63ace7967c82dbac48543600459b1d3c3f20fdf58dbbd1efb6296fb899cb1b7bc7546b0787fa1e786b1431cc1917c9bc7b0aee38b160812",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "1eAoo2KR",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "Clickable island map warp menu (Fancy Warp Menu port)"
+    },
+    {
+      "slug": "catharsis",
+      "title": "Catharsis",
+      "project_id": "fc4wBpRx",
+      "version_id": "44NGgSNL",
+      "version": "1.0.0-beta.22",
+      "channel": "beta",
+      "published": "2026-09-15",
+      "file": "Catharsis-1.0.0-beta.22-26.2.jar",
+      "url": "https://cdn.modrinth.com/data/fc4wBpRx/versions/44NGgSNL/Catharsis-1.0.0-beta.22-26.2.jar",
+      "size": 7145953,
+      "sha1": "20020fe4af48b4cdbdf86a888fc35a95a28fd2e0",
+      "sha512": "c9d415a369544e74dad4010078f91706c2aa31917b2d8224e8c0930c93c8aa49e7441b710585085f45822842515c5df31a7b7fedc826227072fe084efc788303",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "Lets SkyBlock texture packs retexture items (needed by modern Furfsky / Hypixel+ style packs)"
+    },
+    {
+      "slug": "scamscreener",
+      "title": "ScamScreener for Hypixel SkyBlock",
+      "project_id": "XTB0bgAW",
+      "version_id": "2NDs04GD",
+      "version": "2.6.1+26.2",
+      "channel": "release",
+      "published": "2026-09-06",
+      "file": "scamscreener-2.6.1+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/XTB0bgAW/versions/2NDs04GD/scamscreener-2.6.1%2B26.2.jar",
+      "size": 1047230,
+      "sha1": "a3f277d6af911b17240e04961ce3b6205ebf6dd7",
+      "sha512": "3cd5697cc3b78953262db4af64702bd267e1d42b24d716c9bf91bdda22a53311fea0a18f6fa640aee38adfbfdd4fa979e21b18ff7313f53fd4a7e0353a0bf5cf",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "SkyBlock: core",
+      "why": "Flags likely scam messages in chat"
+    },
+    {
+      "slug": "odin",
+      "title": "Odin - Hypixel Skyblock",
+      "project_id": "jJJLywXp",
+      "version_id": "CrejUfoI",
+      "version": "0.3.4",
+      "channel": "beta",
+      "published": "2026-09-15",
+      "file": "Odin-0.3.4.jar",
+      "url": "https://cdn.modrinth.com/data/jJJLywXp/versions/CrejUfoI/Odin-0.3.4.jar",
+      "size": 3817838,
+      "sha1": "db3be88170079076c1f4e18bd09e371ffc621c12",
+      "sha512": "aa097d2ab6c64c6b16b14f52c66347108f46a26590bcea05c7b4244a245322bb442afed06e42ca0f0958b2218939c5c3a20aa2ac368b0ee690384eca3497b264",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Dungeons & Kuudra",
+      "why": "End-game dungeons & Kuudra: solvers, teammate/starred-mob highlight, blood camp helpers, custom room waypoints"
+    },
+    {
+      "slug": "secret-routes-mod",
+      "title": "Secret Routes Mod",
+      "project_id": "l1qibtk8",
+      "version_id": "dhYl9Bh4",
+      "version": "1.0.0+26.2",
+      "channel": "release",
+      "published": "2026-08-05",
+      "file": "SecretRoutes-1.0.0+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/l1qibtk8/versions/dhYl9Bh4/SecretRoutes-1.0.0%2B26.2.jar",
+      "size": 779828,
+      "sha1": "c66da26f18673da9469ed28750a51dfc99ec131a",
+      "sha512": "ab7061d2af6167b816cfd04758d32fc794b9a51532b8993965879152a01822397a6a5860e8261cce606b5136be9967abc15a3684358202e1bdf307c1bbcf9676",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Dungeons & Kuudra",
+      "why": "Recorded secret routes for every room with etherwarp, pearl, stonk and superboom waypoints"
+    },
+    {
+      "slug": "feesh",
+      "title": "Feesh",
+      "project_id": "QCpogurE",
+      "version_id": "fXOT51fP",
+      "version": "1.14.0",
+      "channel": "release",
+      "published": "2026-09-14",
+      "file": "Feesh-1.14.0+26.2-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/QCpogurE/versions/fXOT51fP/Feesh-1.14.0%2B26.2-fabric.jar",
+      "size": 2766844,
+      "sha1": "b1372cc881c37075b10a94063506e202abb6dcdb",
+      "sha512": "41285700ddb6307dc0149a531a55c3a1ac51a502b9a9a4e960253e4555caee0ac70483e173ac1d4d29881df99fc234de59314bceeb98276dfe54bd1a6c99ad0e",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Fishing",
+      "why": "Fishing QoL mod (set it up with `/feesh`). SkyHanni adds sea-creature & trophy-fish trackers on top"
+    },
+    {
+      "slug": "btrbz",
+      "title": "BtrBz",
+      "project_id": "IzWPcaNg",
+      "version_id": "1U9AgZ1F",
+      "version": "0.12.0-alpha+26.2",
+      "channel": "alpha",
+      "published": "2026-09-16",
+      "file": "btrbz-0.12.0-alpha+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/IzWPcaNg/versions/1U9AgZ1F/btrbz-0.12.0-alpha%2B26.2.jar",
+      "size": 6486088,
+      "sha1": "d949373795e0451680897b34a6c5d01f2ec4e72b",
+      "sha512": "b018e39a8327a39b9127a8c9211ee2314f3fb930415802bbcccfa08f744069c69b1045254cd42cec6f36aa8d0dbab01e287388c9d7add952ba166b749351d875",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "1A2mKfBx",
+        "1eAoo2KR",
+        "P7dR8mSH",
+        "ccKDOlHs"
+      ],
+      "incompatible": [],
+      "category": "Bazaar & Auction House",
+      "why": "Bazaar order tracking, outbid/undercut alerts, price alerts, order safety checks. `/btrbz`"
+    },
+    {
+      "slug": "marketguard",
+      "title": "MarketGuard for Hypixel SkyBlock",
+      "project_id": "ji4JdpCu",
+      "version_id": "ufTA1jo1",
+      "version": "1.5.0+26.2",
+      "channel": "release",
+      "published": "2026-09-20",
+      "file": "marketguard-1.5.0+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/ji4JdpCu/versions/ufTA1jo1/marketguard-1.5.0%2B26.2.jar",
+      "size": 14495032,
+      "sha1": "a535ca7fd6aadbf32a93f6c3b95081fd7d2b8411",
+      "sha512": "dbfad8bc529010c953d3eec5dbdc01a7bbdf51d92084e3f445ffbfa0f2b8a4230dd855d4934b80aede859396afd192d98e571a310811152471f101b8fbeebeda",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Bazaar & Auction House",
+      "why": "Blocks AH clicks priced far over/under Lowest BIN (typo protection). `/mg`"
+    },
+    {
+      "slug": "jei",
+      "title": "Just Enough Items (JEI)",
+      "project_id": "u6dRKJwZ",
+      "version_id": "d3HeviSL",
+      "version": "30.29.0.201",
+      "channel": "release",
+      "published": "2026-09-02",
+      "file": "jei-26.2-fabric-30.29.0.201.jar",
+      "url": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/d3HeviSL/jei-26.2-fabric-30.29.0.201.jar",
+      "size": 1860103,
+      "sha1": "e82447aff07e87a372cf817bc9c28b0d77b6f55c",
+      "sha512": "2279cb0ec4e41d9eebad80c2ecac76d19c8bc8e5aac69ba13f35b77494625c70d66edc74d59959116012bfb2f464b55806dd69fbf6387f25679b1553953e329a",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Recipes",
+      "why": "Item & recipe browser. Skyblocker fills it with every SkyBlock item and recipe"
+    },
+    {
+      "slug": "modmenu",
+      "title": "Mod Menu",
+      "project_id": "mOgUt4GM",
+      "version_id": "iRo7AZXf",
+      "version": "20.0.3",
+      "channel": "release",
+      "published": "2026-09-24",
+      "file": "modmenu-20.0.3.jar",
+      "url": "https://cdn.modrinth.com/data/mOgUt4GM/versions/iRo7AZXf/modmenu-20.0.3.jar",
+      "size": 616919,
+      "sha1": "9fc381627b471c18d67156e846228f51ff2ea5b4",
+      "sha512": "c8224aa7a460d0c56ccb9978a112e4ad0d3eb17e2796e0c468a2392d220749f4f602838a11b3666145462c26078a879ab8a2fc177aa440f58e189c92a0088d6e",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH",
+        "eXts2L7r"
+      ],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Mods button with a config screen for everything in the pack"
+    },
+    {
+      "slug": "gamma-utils",
+      "title": "Gamma Utils (Fullbright)",
+      "project_id": "wdLuzzEP",
+      "version_id": "bR4tEPFq",
+      "version": "3.1.1+Fabric",
+      "channel": "release",
+      "published": "2026-07-26",
+      "file": "Gamma-Utils-Fabric-3.1.1+mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/wdLuzzEP/versions/bR4tEPFq/Gamma-Utils-Fabric-3.1.1%2Bmc26.2.jar",
+      "size": 103815,
+      "sha1": "75e9be3a18d5ab7a853d294bcf5209e5c4bc5358",
+      "sha512": "5bca981ba885e7662ab5a400d8bb585b62215c10ed4fe09922578d767241a63c5e22dbd31ff562f770f94c13e87eb968b3a669a8c305acee8b43687f83fa0ec9",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "9s6osm5g",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Fullbright: **G** toggles high gamma, **H** toggles client-side night vision"
+    },
+    {
+      "slug": "zoomify",
+      "title": "Zoomify (Zoom)",
+      "project_id": "w7ThoJFB",
+      "version_id": "2Qr8jSFc",
+      "version": "2.16.3+26.2",
+      "channel": "release",
+      "published": "2026-09-23",
+      "file": "zoomify-2.16.3+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/w7ThoJFB/versions/2Qr8jSFc/zoomify-2.16.3%2B26.2.jar",
+      "size": 563034,
+      "sha1": "2cce6cffc5f34d0ee311123a89cb7448f96584d0",
+      "sha512": "0bd57f133d3bc6d82703733d73596a530b5ddb709a837b4741fae64ebafbefdad08df133ab386a246f1632add635bf4047fa5ec59c804e4feed57808fe336365",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "1eAoo2KR",
+        "Ha28R6CL",
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Zoom (hold **C**, scroll to adjust)"
+    },
+    {
+      "slug": "controlling",
+      "title": "Controlling",
+      "project_id": "xv94TkTM",
+      "version_id": "sZHXONgm",
+      "version": "26.2.4",
+      "channel": "release",
+      "published": "2026-09-19",
+      "file": "Controlling-fabric-26.2-26.2.4.jar",
+      "url": "https://cdn.modrinth.com/data/xv94TkTM/versions/sZHXONgm/Controlling-fabric-26.2-26.2.4.jar",
+      "size": 86209,
+      "sha1": "fb95a0c2ef8aad5c5f846aabfca11d86fa4d527f",
+      "sha512": "27147edf57915d88db8d2cbda8a54e97f4dd36bb7379e191d6fec67fe2c42f8f1f96d75a5afc8b84c9177661089ec28f0e89b519321e5d2fcf512a3df27e22c4",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH",
+        "fuuu3xnx"
+      ],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Search bar in Controls, which you'll want with this many keybinds"
+    },
+    {
+      "slug": "chatpatches",
+      "title": "Chat Patches",
+      "project_id": "MOqt4Z5n",
+      "version_id": "iEULL77f",
+      "version": "8.0-alpha.11+26.2-fabric",
+      "channel": "alpha",
+      "published": "2026-07-01",
+      "file": "chatpatches-8.0-alpha.11+26.2-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/MOqt4Z5n/versions/iEULL77f/chatpatches-8.0-alpha.11%2B26.2-fabric.jar",
+      "size": 1487884,
+      "sha1": "7d2539a4f4fd5bd4a19798cc73b1431511de1431",
+      "sha512": "36577af7bdd6785bc00ffc537ad02b9c26c09865c0e91170b411736f8cd8c09149f0fec18fe41234bf74b409784fb60dac44e0f3a8227e29903b6125cbf7bdc9",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "1eAoo2KR",
+        "P7dR8mSH"
+      ],
+      "incompatible": [
+        "8qkXwOnk"
+      ],
+      "category": "Vanilla QoL",
+      "why": "Longer chat history kept between sessions, timestamps, duplicate-message counter"
+    },
+    {
+      "slug": "tooltip-scroll",
+      "title": "Tooltip Scroll",
+      "project_id": "wySVd6d8",
+      "version_id": "71h0RzwD",
+      "version": "1.5.1+26.2",
+      "channel": "release",
+      "published": "2026-06-24",
+      "file": "tooltip-scroll-1.5.1+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/wySVd6d8/versions/71h0RzwD/tooltip-scroll-1.5.1%2B26.2.jar",
+      "size": 89530,
+      "sha1": "90a85fd65fac2157f62745e5891f548d62809099",
+      "sha512": "e1fb50d471aecd5c956047f29400768441ef2e7d171b7b40350c8483f8d0ce93a9432af538a54d2c666ed4d58f2f22474b8e36f66a8cb96e3661327822c30e9a",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Scroll long SkyBlock tooltips that run off the screen"
+    },
+    {
+      "slug": "auth-me",
+      "title": "Auth Me",
+      "project_id": "yjgIrBjZ",
+      "version_id": "KKsXwobI",
+      "version": "v9.3.0+26.2",
+      "channel": "release",
+      "published": "2026-06-21",
+      "file": "authme-fabric-9.3.0+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/yjgIrBjZ/versions/KKsXwobI/authme-fabric-9.3.0%2B26.2.jar",
+      "size": 1542637,
+      "sha1": "fbe90e617537c960eae71b52da0045c981856661",
+      "sha512": "b2329250a424655d32d760deef76a33626c4c25598ca485735814206725e16de2bd419593003097e2fb800992fbac63dbb866f740142ddd50ee3beb492c68373",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Re-login from the disconnect screen without restarting the game"
+    },
+    {
+      "slug": "no-chat-reports",
+      "title": "No Chat Reports",
+      "project_id": "qQyHxfxd",
+      "version_id": "aDbxaVTi",
+      "version": "Fabric-26.2-v2.20.2",
+      "channel": "release",
+      "published": "2026-08-18",
+      "file": "NoChatReports-FABRIC-26.2-v2.20.2.jar",
+      "url": "https://cdn.modrinth.com/data/qQyHxfxd/versions/aDbxaVTi/NoChatReports-FABRIC-26.2-v2.20.2.jar",
+      "size": 239602,
+      "sha1": "680b60f6ec5c09a646e7a76bb17cf551608051cd",
+      "sha512": "aa14fa2d1cc94803f4c965fd817a945823037237bd7a1fea9dc9a0c6427084d25b8d9273da76bc132fe68794d2be8b91540bfff1309125aea37820c12bff0268",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Strips chat signing so messages can't be reported to Mojang"
+    },
+    {
+      "slug": "resourcepackcached",
+      "title": "ResourcePackCached",
+      "project_id": "d4phKsx2",
+      "version_id": "fYBMerql",
+      "version": "1.2.7",
+      "channel": "release",
+      "published": "2026-07-17",
+      "file": "rpc-1.2.7+26.1-26.2.jar",
+      "url": "https://cdn.modrinth.com/data/d4phKsx2/versions/fYBMerql/rpc-1.2.7%2B26.1-26.2.jar",
+      "size": 15519,
+      "sha1": "83d1c3896d7bb50654b77229f0a95edc07fc9194",
+      "sha512": "986b50c766456a6f1c07a7923486fe34f04acff38753ffd36b7044479de5e5aba4a1c4d78852c004bef7ab510786ba7384ee921a4d5d69eed31b7fe518b2567d",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "Keeps server resource packs loaded so rejoining Hypixel is faster"
+    },
+    {
+      "slug": "crash-assistant",
+      "title": "Crash Assistant",
+      "project_id": "ix1qq8Ux",
+      "version_id": "alR3tamq",
+      "version": "1.11.14",
+      "channel": "release",
+      "published": "2026-09-20",
+      "file": "CrashAssistant-fabric-26.2-26.3-1.11.14.jar",
+      "url": "https://cdn.modrinth.com/data/ix1qq8Ux/versions/alR3tamq/CrashAssistant-fabric-26.2-26.3-1.11.14.jar",
+      "size": 3464190,
+      "sha1": "dea53a10e5fbfaacd18e212a0eb0fe328b3e9467",
+      "sha512": "eab56ff4773821ea74c16987a986032e0d41119078efed17f66e4d6f1e19ab43e1e465463b09386644c4ae73942909f29ff725736e2ea1ad6de9b8313080de31",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Vanilla QoL",
+      "why": "If the game crashes, shows which mod caused it instead of a wall of log"
+    },
+    {
+      "slug": "sodium",
+      "title": "Sodium",
+      "project_id": "AANobbMI",
+      "version_id": "xJZxADzI",
+      "version": "mc26.2-0.9.2-fabric",
+      "channel": "release",
+      "published": "2026-09-11",
+      "file": "sodium-fabric-0.9.2+mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/AANobbMI/versions/xJZxADzI/sodium-fabric-0.9.2%2Bmc26.2.jar",
+      "size": 1885572,
+      "sha1": "62a70961a5b3e06938e06ab5f2dc4c5a51cf3323",
+      "sha512": "9b7a7aade8824543ce2a804fddfd04e37f57d1f91c00574e7dc87e554eb1835d888313ee6f715a7599bd729840cf01fd74e02aeae87b4e5a3c10c34a016e407c",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Modern renderer, huge FPS boost"
+    },
+    {
+      "slug": "sodium-extra",
+      "title": "Sodium Extra",
+      "project_id": "PtjYWJkn",
+      "version_id": "kGXOsmfx",
+      "version": "mc26.2-0.9.4+fabric",
+      "channel": "release",
+      "published": "2026-09-16",
+      "file": "sodium-extra-fabric-0.9.4+mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/PtjYWJkn/versions/kGXOsmfx/sodium-extra-fabric-0.9.4%2Bmc26.2.jar",
+      "size": 484469,
+      "sha1": "e1a6d6af9081898d79eae0921098f8da2fc4f14a",
+      "sha512": "7d45a24acc950e57efe5ff59b12d3ab3245733712120e4457b048f71ee856e5cb0d1169bb4bcc02e63000b8e1818b8ce040291a61c23ae7c23f0be2d5810dae7",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "AANobbMI"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Extra Sodium toggles (particles, animations, fog, FPS counter)"
+    },
+    {
+      "slug": "reeses-sodium-options",
+      "title": "Reese's Sodium Options",
+      "project_id": "Bh37bMuy",
+      "version_id": "nnz8j4Hu",
+      "version": "mc26.2-2.2.4+fabric",
+      "channel": "release",
+      "published": "2026-09-16",
+      "file": "reeses-sodium-options-fabric-2.2.4+mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/Bh37bMuy/versions/nnz8j4Hu/reeses-sodium-options-fabric-2.2.4%2Bmc26.2.jar",
+      "size": 257483,
+      "sha1": "2afa030032453550d89ccdf1f235f85c0166568d",
+      "sha512": "d0d313f1db8f792b3b097dcbce095669c2a638e8995f2ba3dfdc5e517afcbc24de5e4d6c24dd77b3f44558490e7a6b408fa7661a8be52113327a4a560f984edc",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "AANobbMI"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Cleaner tabbed video settings screen"
+    },
+    {
+      "slug": "iris",
+      "title": "Iris Shaders",
+      "project_id": "YL57xq9U",
+      "version_id": "gxZWWnKH",
+      "version": "1.11.4+26.2-fabric",
+      "channel": "release",
+      "published": "2026-09-13",
+      "file": "iris-fabric-1.11.4+mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/gxZWWnKH/iris-fabric-1.11.4%2Bmc26.2.jar",
+      "size": 2821616,
+      "sha1": "bd0b24731a94b8fe164531e6345718d30ab08ed2",
+      "sha512": "dee955580976aebc92373f5c2d88398ad1019b043c6254a41fe7ab8a6ca3a5ff29d58df2b22ec43a31198beb769e814658eef06fbf980066a2e2c216eeafd32a",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "AANobbMI"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Shader support (off by default, costs nothing unless you pick a shaderpack)"
+    },
+    {
+      "slug": "lithium",
+      "title": "Lithium",
+      "project_id": "gvQqBUqZ",
+      "version_id": "f7vZ0VWU",
+      "version": "mc26.2-0.25.3-fabric",
+      "channel": "release",
+      "published": "2026-07-29",
+      "file": "lithium-fabric-0.25.3+mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/gvQqBUqZ/versions/f7vZ0VWU/lithium-fabric-0.25.3%2Bmc26.2.jar",
+      "size": 912850,
+      "sha1": "435ad0289209bb72195e7a423756a03f5dfa5a9a",
+      "sha512": "148b638f3c6229fbaf487120a2344a0af5e411a5aa6533d5db9d75da0a8c0d8304f63eb4cca13f4d03b2c9b4c23d559dd74c1d832422ef8a3087bd005e62a8bd",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Game-logic optimizations"
+    },
+    {
+      "slug": "ferrite-core",
+      "title": "FerriteCore",
+      "project_id": "uXXizFIs",
+      "version_id": "d5ddUdiB",
+      "version": "9.0.0-fabric",
+      "channel": "release",
+      "published": "2026-03-24",
+      "file": "ferritecore-9.0.0-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/uXXizFIs/versions/d5ddUdiB/ferritecore-9.0.0-fabric.jar",
+      "size": 72677,
+      "sha1": "eac76ff0f3753422c61b2c44487d0d195d88d4bc",
+      "sha512": "d81fa97e11784c19d42f89c2f433831d007603dd7193cee45fa177e4a6a9c52b384b198586e04a0f7f63cd996fed713322578bde9a8db57e1188854ae5cbe584",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Lower memory usage"
+    },
+    {
+      "slug": "modernfix-mvus",
+      "title": "ModernFix-mVUS",
+      "project_id": "TjSm1wrD",
+      "version_id": "50uUra83",
+      "version": "5.27.19-build.2",
+      "channel": "release",
+      "published": "2026-09-25",
+      "file": "modernfix-5.27.19-build.2.jar",
+      "url": "https://cdn.modrinth.com/data/TjSm1wrD/versions/50uUra83/modernfix-5.27.19-build.2.jar",
+      "size": 1173963,
+      "sha1": "a14d2ba0fd0d56d12d48bb9f1c44fd3d345bf5e2",
+      "sha512": "75b1aecabdb13fb61969d730c328cfc102b1c50fa9620c60b8433d830a19b2d2bea32aca48ca4934b1be98f8a6fb5bde0039efd273b47bd05da40a87efce36ac",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Faster launch, lower memory, bug fixes (ModernFix fork that tracks new versions)"
+    },
+    {
+      "slug": "entityculling",
+      "title": "Entity Culling",
+      "project_id": "NNAgCjsB",
+      "version_id": "RWjup6Jf",
+      "version": "1.11.2",
+      "channel": "release",
+      "published": "2026-09-21",
+      "file": "entityculling-fabric-1.11.2-mc26.2.jar",
+      "url": "https://cdn.modrinth.com/data/NNAgCjsB/versions/RWjup6Jf/entityculling-fabric-1.11.2-mc26.2.jar",
+      "size": 1508311,
+      "sha1": "8a379bf40ab7125756afe7bbdf9501324bc37216",
+      "sha512": "4562dd16ce9213959c41fe58a3dd73a95c9ab9095a0fc7fbaa752b6ce3433fbef5063e7f5f2634b1ff34499261f48d31e878306dac8701425af1d50e726e53fd",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Skips rendering entities/block entities you can't see (big win in crowded hubs)"
+    },
+    {
+      "slug": "moreculling",
+      "title": "More Culling",
+      "project_id": "51shyZVL",
+      "version_id": "D5oVCouK",
+      "version": "1.8.1",
+      "channel": "release",
+      "published": "2026-08-02",
+      "file": "moreculling-fabric-26.2-1.8.1.jar",
+      "url": "https://cdn.modrinth.com/data/51shyZVL/versions/D5oVCouK/moreculling-fabric-26.2-1.8.1.jar",
+      "size": 363646,
+      "sha1": "189d90ef598883df8197ea18b510dba21e69bac4",
+      "sha512": "9c331ba5f2ce9c322c41aa577f1029f3420d5507d0d942aadbb43fb9bd82e7da6f72e3a0b26c4ad96394669a99a7feb512b5119b3095fde2e0a437bf68c08b40",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "9s6osm5g"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Additional block culling"
+    },
+    {
+      "slug": "immediatelyfast",
+      "title": "ImmediatelyFast",
+      "project_id": "5ZwdcRci",
+      "version_id": "pMWERcSu",
+      "version": "1.16.5+26.2-fabric",
+      "channel": "release",
+      "published": "2026-09-16",
+      "file": "ImmediatelyFast-Fabric-1.16.5+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/5ZwdcRci/versions/pMWERcSu/ImmediatelyFast-Fabric-1.16.5%2B26.2.jar",
+      "size": 100500,
+      "sha1": "0286260261591fe77ba0d332d5d5a2d2e868c2c6",
+      "sha512": "5836b089072c0fd796613d42c3bd01c7e401b6ad53de80328bb9d74d585de9be0ff0cfc4d6ffa1ed41008750573b0525eff8c064162a2f724ad16817a8fdaf22",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Faster HUD, text and GUI rendering (lots of SkyBlock overlays)"
+    },
+    {
+      "slug": "dynamic-fps",
+      "title": "Dynamic FPS",
+      "project_id": "LQ3K71Q1",
+      "version_id": "pC2JjFw1",
+      "version": "3.11.9",
+      "channel": "release",
+      "published": "2026-06-16",
+      "file": "dynamic-fps-3.11.9+minecraft-26.2.0-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/LQ3K71Q1/versions/pC2JjFw1/dynamic-fps-3.11.9%2Bminecraft-26.2.0-fabric.jar",
+      "size": 188740,
+      "sha1": "e8cd9e4fbc6d42091faffc873b0801f1189ed6a5",
+      "sha512": "79b13548d7e9de9abfa23e062724a885e5341f371c500d6570056ecea7db00c2f7ace5a7288179ad8baec575b4aa992b91dccbc940c584cb5cddf0bc7aeb892f",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "category": "Performance",
+      "why": "Lowers FPS when the game is in the background or idle (AFK garden, alt-tab)"
+    },
+    {
+      "slug": "cloth-config",
+      "title": "Cloth Config API",
+      "project_id": "9s6osm5g",
+      "version_id": "Nv3xnWXd",
+      "version": "26.2.155+fabric",
+      "channel": "release",
+      "published": "2026-06-18",
+      "file": "cloth-config-26.2.155.jar",
+      "url": "https://cdn.modrinth.com/data/9s6osm5g/versions/Nv3xnWXd/cloth-config-26.2.155.jar",
+      "size": 1135186,
+      "sha1": "babcf16dbd15e09d326e21ffe85ab3f7d843ef9e",
+      "sha512": "37b1e402f0df5a383656e21a38ee18cdd15cb4ba3fb62fbeba82ef4b959a4479fc32718ac0d9d154a7d9104c5f7315bfa67dbeced0b8ff240b8039d4848d5df1",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "required_by": [
+        "gamma-utils",
+        "moreculling"
+      ]
+    },
+    {
+      "slug": "fabric-api",
+      "title": "Fabric API",
+      "project_id": "P7dR8mSH",
+      "version_id": "ewUK83HI",
+      "version": "0.161.0+26.2",
+      "channel": "release",
+      "published": "2026-09-18",
+      "file": "fabric-api-0.161.0+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/ewUK83HI/fabric-api-0.161.0%2B26.2.jar",
+      "size": 2566123,
+      "sha1": "332da34ebb72171e603a0c538de17f4c54ea9e29",
+      "sha512": "2502fa5ade78e9a120b3747bc1a9a2167d6671743bea45bf115d3174c94121aeda87c549446d1a604a9c11fb828de17a551e3514ce42f3e93069dd14bdaee55b",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "required_by": [
+        "btrbz",
+        "catharsis",
+        "chatpatches",
+        "controlling",
+        "dynamic-fps",
+        "entityculling",
+        "feesh",
+        "gamma-utils",
+        "marketguard",
+        "modern-warp-menu",
+        "modernfix-mvus",
+        "modmenu",
+        "no-chat-reports",
+        "odin",
+        "owo-lib",
+        "scamscreener",
+        "searchables",
+        "skyblock-enhanced-storage",
+        "skyblock-profile-viewer",
+        "skyblocker-liap",
+        "skyhanni",
+        "tooltip-scroll",
+        "yacl",
+        "zoomify"
+      ]
+    },
+    {
+      "slug": "fabric-language-kotlin",
+      "title": "Fabric Language Kotlin",
+      "project_id": "Ha28R6CL",
+      "version_id": "eRRZzGMc",
+      "version": "1.14.1+kotlin.2.4.20",
+      "channel": "release",
+      "published": "2026-09-07",
+      "file": "fabric-language-kotlin-1.14.1+kotlin.2.4.20.jar",
+      "url": "https://cdn.modrinth.com/data/Ha28R6CL/versions/eRRZzGMc/fabric-language-kotlin-1.14.1%2Bkotlin.2.4.20.jar",
+      "size": 8142858,
+      "sha1": "62ae40a31b689b52fde399f2143d547a631e942c",
+      "sha512": "91404f87774466ce8604aafea791d8cc97b603bc310dce17c8188f94f7783cca6dc14fc726ce871ca317bfe9033c199d8d858d51284106a00754e952147703b8",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "required_by": [
+        "catharsis",
+        "feesh",
+        "odin",
+        "skyblock-profile-viewer",
+        "skyblocker-liap",
+        "skyhanni",
+        "zoomify"
+      ]
+    },
+    {
+      "slug": "hypixel-mod-api",
+      "title": "Hypixel Mod API",
+      "project_id": "1A2mKfBx",
+      "version_id": "SlqCF6Or",
+      "version": "1.0.2+build.1+mc26.1",
+      "channel": "release",
+      "published": "2026-03-24",
+      "file": "HypixelModAPI-1.0.2+build.1+mc26.1.jar",
+      "url": "https://cdn.modrinth.com/data/1A2mKfBx/versions/SlqCF6Or/HypixelModAPI-1.0.2%2Bbuild.1%2Bmc26.1.jar",
+      "size": 93769,
+      "sha1": "88726ef6465e41d6f5bce83b7575bdf0a279b800",
+      "sha512": "ceb4cf37edf3e263801d23d80f88f331798133d8facc56b2501b2f5f86e32d7cea7a94356b1cf29865cae20fb07a50f4765a35180af265d708e05cea976a3fe8",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "required_by": [
+        "btrbz",
+        "skyhanni"
+      ]
+    },
+    {
+      "slug": "owo-lib",
+      "title": "oωo (owo-lib)",
+      "project_id": "ccKDOlHs",
+      "version_id": "1h9g10ru",
+      "version": "0.13.1+26.2",
+      "channel": "release",
+      "published": "2026-08-19",
+      "file": "owo-lib-0.13.1+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/ccKDOlHs/versions/1h9g10ru/owo-lib-0.13.1%2B26.2.jar",
+      "size": 2269252,
+      "sha1": "3111139453af67f14cb32e572bde7ae93126477b",
+      "sha512": "d7393129fa9d8c42c244b96fa66bdbbbcd23967fc6d393a689fbf1b0ee11f6da297c2ddcde3c3e476d2d07b73b600ad3d68c739786c729a4dc13a03e72ac0f82",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "required_by": [
+        "btrbz"
+      ]
+    },
+    {
+      "slug": "placeholder-api",
+      "title": "Text Placeholder API",
+      "project_id": "eXts2L7r",
+      "version_id": "NDqH16LT",
+      "version": "3.1.0-beta.1+26.2",
+      "channel": "release",
+      "published": "2026-05-27",
+      "file": "placeholder-api-3.1.0-beta.1+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/eXts2L7r/versions/NDqH16LT/placeholder-api-3.1.0-beta.1%2B26.2.jar",
+      "size": 254973,
+      "sha1": "99b57ccc1d4323c4ef71887828dac25ce4ce2103",
+      "sha512": "07b6fc802559d54ec6577f6e2788926ef391d755206c2bfb0528280977885cae4bc0c517d8a53eb6f34092015ebe6c41210627d255aa6504662daefa8fb76397",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [],
+      "incompatible": [],
+      "required_by": [
+        "modmenu"
+      ]
+    },
+    {
+      "slug": "searchables",
+      "title": "Searchables",
+      "project_id": "fuuu3xnx",
+      "version_id": "bvFby61J",
+      "version": "1.0.1",
+      "channel": "release",
+      "published": "2026-06-17",
+      "file": "Searchables-fabric-26.2-1.0.1.jar",
+      "url": "https://cdn.modrinth.com/data/fuuu3xnx/versions/bvFby61J/Searchables-fabric-26.2-1.0.1.jar",
+      "size": 78982,
+      "sha1": "73c1917f4ff056254c95f50a5acb18d16384139a",
+      "sha512": "342f6b9ddee7391f0f5c30090dc7b7fe0b9638c86b729d3e989360ccdf5e5a85d729decc3e27efcdaeaad6b4696e9dd8fb48391c803d8324195b6f5194761a70",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "required_by": [
+        "controlling"
+      ]
+    },
+    {
+      "slug": "ui-lib",
+      "title": "UI Lib",
+      "project_id": "AOEDs9Al",
+      "version_id": "9n4snDWk",
+      "version": "21.1.2",
+      "channel": "release",
+      "published": "2026-08-30",
+      "file": "uilib-fabric-21.1.2.jar",
+      "url": "https://cdn.modrinth.com/data/AOEDs9Al/versions/9n4snDWk/uilib-fabric-21.1.2.jar",
+      "size": 103494,
+      "sha1": "43bcb7a568b16a03ed22a74bfcfc29de0874bf01",
+      "sha512": "86af0790b3fe7ae552ef7b372474c5baaeca776523426b2200d0bf8658ffe07662af11136e2fbc14a601b6490a34dc5048f24a3d1902bb4e1011076d274d4f42",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "requires": [],
+      "incompatible": [],
+      "required_by": [
+        "skyblock-enhanced-storage"
+      ]
+    },
+    {
+      "slug": "yacl",
+      "title": "YetAnotherConfigLib (YACL)",
+      "project_id": "1eAoo2KR",
+      "version_id": "DoR7RYgi",
+      "version": "3.9.7+26.2-fabric",
+      "channel": "release",
+      "published": "2026-09-20",
+      "file": "yet_another_config_lib_v3-3.9.7+26.2-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/1eAoo2KR/versions/DoR7RYgi/yet_another_config_lib_v3-3.9.7%2B26.2-fabric.jar",
+      "size": 1125271,
+      "sha1": "79c8ee7f8a0e775190dfff59be1e505e2f432998",
+      "sha512": "f36d91a9506ad9addbaaeecaea01d2b0cb5b060f52486b17688746cb597f0f3b23a80f8441f7a73a9cb8cde85af8809fe54825984b56345325359d505a80e7f2",
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "required_by": [
+        "btrbz",
+        "chatpatches",
+        "modern-warp-menu",
+        "zoomify"
+      ]
+    }
+  ]
+}

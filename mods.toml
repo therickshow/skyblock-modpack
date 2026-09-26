@@ -1,0 +1,196 @@
+# Every mod in the pack, grouped by category (the README table follows this order).
+# Libraries (Fabric API, Kotlin, config libs, ...) are pulled in automatically from each
+# mod's declared dependencies. Don't list them here.
+#
+#   slug     Modrinth project slug: modrinth.com/mod/<slug>
+#   why      One line for the README table
+#   channel  Optional. "release" (default) = only take betas/alphas when a mod has no
+#            release for this Minecraft version. "beta"/"alpha" = always take the newest
+#            build up to that channel.
+#   pin      Optional. Exact Modrinth version number to lock to (skips updates).
+#
+# After editing: run `python tools/modpack.py update`, then `build`.
+
+# ─── SkyBlock: core ──────────────────────────────────────────────────────────────
+
+[[mod]]
+slug = "skyblocker-liap"
+category = "SkyBlock: core"
+why = "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices, SkyBlock items/recipes in JEI"
+
+[[mod]]
+slug = "skyhanni"
+category = "SkyBlock: core"
+why = "Garden/farming overlays (crop milestones, visitor helper, money/hr, pests), plus slayer, mining, fishing, Diana and Rift features. `/sh`"
+
+[[mod]]
+slug = "skyblock-profile-viewer"
+category = "SkyBlock: core"
+why = "`/pv <player>`: full profile viewer, handy for party-finder checks"
+
+[[mod]]
+slug = "skyblock-enhanced-storage"
+category = "SkyBlock: core"
+why = "All Ender Chest + Backpack pages in one searchable screen"
+
+[[mod]]
+slug = "modern-warp-menu"
+category = "SkyBlock: core"
+why = "Clickable island map warp menu (Fancy Warp Menu port)"
+
+[[mod]]
+slug = "catharsis"
+category = "SkyBlock: core"
+why = "Lets SkyBlock texture packs retexture items (needed by modern Furfsky / Hypixel+ style packs)"
+
+[[mod]]
+slug = "scamscreener"
+category = "SkyBlock: core"
+why = "Flags likely scam messages in chat"
+
+# ─── Dungeons & Kuudra ──────────────────────────────────────────────────────────
+
+[[mod]]
+slug = "odin"
+category = "Dungeons & Kuudra"
+why = "End-game dungeons & Kuudra: solvers, teammate/starred-mob highlight, blood camp helpers, custom room waypoints"
+
+[[mod]]
+slug = "secret-routes-mod"
+category = "Dungeons & Kuudra"
+why = "Recorded secret routes for every room with etherwarp, pearl, stonk and superboom waypoints"
+
+# ─── Fishing ────────────────────────────────────────────────────────────────────
+
+[[mod]]
+slug = "feesh"
+category = "Fishing"
+why = "Fishing QoL mod (set it up with `/feesh`). SkyHanni adds sea-creature & trophy-fish trackers on top"
+
+# ─── Bazaar & Auction House ─────────────────────────────────────────────────────
+
+[[mod]]
+slug = "btrbz"
+category = "Bazaar & Auction House"
+why = "Bazaar order tracking, outbid/undercut alerts, price alerts, order safety checks. `/btrbz`"
+
+[[mod]]
+slug = "marketguard"
+category = "Bazaar & Auction House"
+why = "Blocks AH clicks priced far over/under Lowest BIN (typo protection). `/mg`"
+
+# ─── Recipes ────────────────────────────────────────────────────────────────────
+
+[[mod]]
+slug = "jei"
+category = "Recipes"
+why = "Item & recipe browser. Skyblocker fills it with every SkyBlock item and recipe"
+
+# ─── Vanilla QoL ────────────────────────────────────────────────────────────────
+
+[[mod]]
+slug = "modmenu"
+category = "Vanilla QoL"
+why = "Mods button with a config screen for everything in the pack"
+
+[[mod]]
+slug = "gamma-utils"
+category = "Vanilla QoL"
+why = "Fullbright: **G** toggles high gamma, **H** toggles client-side night vision"
+
+[[mod]]
+slug = "zoomify"
+category = "Vanilla QoL"
+why = "Zoom (hold **C**, scroll to adjust)"
+
+[[mod]]
+slug = "controlling"
+category = "Vanilla QoL"
+why = "Search bar in Controls, which you'll want with this many keybinds"
+
+[[mod]]
+slug = "chatpatches"
+category = "Vanilla QoL"
+why = "Longer chat history kept between sessions, timestamps, duplicate-message counter"
+
+[[mod]]
+slug = "tooltip-scroll"
+category = "Vanilla QoL"
+why = "Scroll long SkyBlock tooltips that run off the screen"
+
+[[mod]]
+slug = "auth-me"
+category = "Vanilla QoL"
+why = "Re-login from the disconnect screen without restarting the game"
+
+[[mod]]
+slug = "no-chat-reports"
+category = "Vanilla QoL"
+why = "Strips chat signing so messages can't be reported to Mojang"
+
+[[mod]]
+slug = "resourcepackcached"
+category = "Vanilla QoL"
+why = "Keeps server resource packs loaded so rejoining Hypixel is faster"
+
+[[mod]]
+slug = "crash-assistant"
+category = "Vanilla QoL"
+why = "If the game crashes, shows which mod caused it instead of a wall of log"
+
+# ─── Performance ────────────────────────────────────────────────────────────────
+
+[[mod]]
+slug = "sodium"
+category = "Performance"
+why = "Modern renderer, huge FPS boost"
+
+[[mod]]
+slug = "sodium-extra"
+category = "Performance"
+why = "Extra Sodium toggles (particles, animations, fog, FPS counter)"
+
+[[mod]]
+slug = "reeses-sodium-options"
+category = "Performance"
+why = "Cleaner tabbed video settings screen"
+
+[[mod]]
+slug = "iris"
+category = "Performance"
+why = "Shader support (off by default, costs nothing unless you pick a shaderpack)"
+
+[[mod]]
+slug = "lithium"
+category = "Performance"
+why = "Game-logic optimizations"
+
+[[mod]]
+slug = "ferrite-core"
+category = "Performance"
+why = "Lower memory usage"
+
+[[mod]]
+slug = "modernfix-mvus"
+category = "Performance"
+why = "Faster launch, lower memory, bug fixes (ModernFix fork that tracks new versions)"
+
+[[mod]]
+slug = "entityculling"
+category = "Performance"
+why = "Skips rendering entities/block entities you can't see (big win in crowded hubs)"
+
+[[mod]]
+slug = "moreculling"
+category = "Performance"
+why = "Additional block culling"
+
+[[mod]]
+slug = "immediatelyfast"
+category = "Performance"
+why = "Faster HUD, text and GUI rendering (lots of SkyBlock overlays)"
+
+[[mod]]
+slug = "dynamic-fps"
+category = "Performance"
+why = "Lowers FPS when the game is in the background or idle (AFK garden, alt-tab)"
