@@ -41,6 +41,12 @@ class ConfigError(Exception):
     """A problem the user needs to fix; printed without a traceback."""
 
 
+def read_exact(path: Path) -> str:
+    """Read a text file without translating line endings (Path.read_text turns \\r\\n into \\n)."""
+    with open(path, encoding="utf-8", newline="") as f:
+        return f.read()
+
+
 # ─── keybinds: options.txt ────────────────────────────────────────────────────
 
 
@@ -223,7 +229,7 @@ def configure(instance: Path, settings: dict, dry_run: bool = False) -> dict[str
 
     if keybinds := settings.get("keybinds"):
         path = instance / "options.txt"
-        text, report["Keybinds"] = apply_keybinds(path.read_text(encoding="utf-8"), keybinds)
+        text, report["Keybinds"] = apply_keybinds(read_exact(path), keybinds)
         if report["Keybinds"]:
             writes[path] = text
 
@@ -232,7 +238,7 @@ def configure(instance: Path, settings: dict, dry_run: bool = False) -> dict[str
         if not path.exists():
             raise ConfigError(f"{path} doesn't exist yet; start and close the game once")
         toggles = skyhanni_feature_toggles(find_jar(instance, "skyhanni*.jar"))
-        config = json.loads(path.read_text(encoding="utf-8"))
+        config = json.loads(read_exact(path))
         changed = enable_sections(config, toggles, sections)
         report["SkyHanni"] = [f"{p}: on" for p in changed]
         if changed:
@@ -243,7 +249,7 @@ def configure(instance: Path, settings: dict, dry_run: bool = False) -> dict[str
         if missing := odin_names_not_in_jar(jar, names):
             raise ConfigError(f"Odin has no module called {', '.join(missing)}")
         path = instance / "config" / "odin" / "odin-config.json"
-        text = path.read_text(encoding="utf-8") if path.exists() else ""
+        text = read_exact(path) if path.exists() else ""
         new_text, report["Odin"] = enable_odin_modules(text, names)
         if report["Odin"]:
             writes[path] = new_text
