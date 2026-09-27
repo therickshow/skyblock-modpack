@@ -428,6 +428,30 @@ class BuildTests(PackTestCase):
             self.assertEqual(sorted(z.namelist()), ["modrinth.index.json", "overrides/config/demo.json"])
             self.assertEqual(z.read("overrides/config/demo.json"), b'{"on": true}')
 
+    def add_companion(self, *jar_names):
+        with open(self.root / "pack.toml", "a", encoding="utf-8") as f:
+            f.write('\n[companion]\njar_glob = "companion-mod/build/libs/menus-*.jar"\ninstall_as = "mods/menus.jar"\n')
+        libs = self.root / "companion-mod" / "build" / "libs"
+        libs.mkdir(parents=True)
+        for name in jar_names:
+            (libs / name).write_bytes(f"jar bytes of {name}".encode())
+
+    def test_companion_jar_is_shipped_under_its_fixed_name(self):
+        self.add_companion("menus-1.2.0.jar", "menus-1.2.0-sources.jar")
+        self.run_quiet(modpack.cmd_build, None)
+        with self.read_pack() as z:
+            self.assertEqual(z.read("overrides/mods/menus.jar"), b"jar bytes of menus-1.2.0.jar")
+            self.assertFalse([n for n in z.namelist() if "sources" in n])
+
+    def test_build_fails_when_the_companion_is_not_built(self):
+        self.add_companion()
+        self.assert_fails(modpack.cmd_build, None, message="companion mod not built yet")
+        self.assertFalse((self.root / "dist").exists())
+
+    def test_build_fails_with_two_companion_versions_lying_around(self):
+        self.add_companion("menus-1.0.0.jar", "menus-1.1.0.jar")
+        self.assert_fails(modpack.cmd_build, None, message="more than one companion jar")
+
     def test_fails_without_a_lock_file(self):
         (self.root / "modpack.lock.json").unlink()
         self.assert_fails(modpack.cmd_build, None, message="no modpack.lock.json yet")

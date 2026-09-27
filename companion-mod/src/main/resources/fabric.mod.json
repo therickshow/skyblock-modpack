@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "skyblockqol_menus",
+  "version": "${version}",
+  "name": "SkyBlock QoL: Mod Menu Buttons",
+  "description": "Adds Mod Menu settings buttons for mods in the SkyBlock QoL pack that have a settings screen but no button: Feesh, SkyBlock Profile Viewer, Auth Me, Sodium (+ Sodium Extra, Reese's Sodium Options) and Catharsis.",
+  "authors": ["therickshow"],
+  "contact": {
+    "sources": "https://github.com/therickshow/skyblock-modpack"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": ["io.github.therickshow.skyblockqol.ModMenuButtons"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "modmenu": "*"
+  }
+}

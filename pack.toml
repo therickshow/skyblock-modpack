@@ -12,3 +12,10 @@ name = "fabric"
 # "latest" = newest stable Fabric Loader for the Minecraft version above,
 # resolved and pinned in modpack.lock.json by `tools/modpack.py update`.
 version = "latest"
+
+[companion]
+# Our own small mod in companion-mod/ (adds Mod Menu buttons). Build it with Gradle first;
+# `tools/modpack.py build` then ships it inside the .mrpack under a fixed name, so a pack
+# update replaces the old copy instead of leaving two.
+jar_glob = "companion-mod/build/libs/skyblockqol-menus-*.jar"
+install_as = "mods/skyblockqol-menus.jar"

@@ -1,0 +1,4 @@
+# gradlew is a shell script: it must keep LF endings or it breaks on Linux (GitHub Actions)
+companion-mod/gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary

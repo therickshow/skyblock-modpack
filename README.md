@@ -23,6 +23,13 @@ performance mods, plus the big SkyBlock mods for dungeons, fishing, farming, the
   Shortcuts: SkyHanni `/sh`, Skyblocker `/skyblocker config`, Odin **Right Shift**, Feesh `/feesh`,
   BtrBz `/btrbz`, MarketGuard `/mg`, profile viewer `/pv <player>`.
 - **Mod Menu has no key by default.** The preset puts it on **Right Ctrl**.
+- **Every mod with settings has a button in Mod Menu.** Most mods add their own. The pack's
+  small companion mod ([`companion-mod/`](companion-mod/)) adds the missing ones: Feesh,
+  SkyBlock Profile Viewer, Auth Me, Sodium / Sodium Extra / Reese's (all open Sodium's video
+  settings), and Catharsis (opens Resource Packs, where its per-pack options live). Mods
+  without a button either have nothing to set (libraries, Controlling) or keep their
+  settings only in a file under `config/` (Lithium, FerriteCore, ImmediatelyFast, Crash
+  Assistant, JEI, MarketGuard, Enhanced Storage).
 - **Secret Routes only *checks* for updates.** Its auto-download is off by default. Leave it
   off: the pack pins every version, and an extra jar in the mods folder causes a
   duplicate-mod crash.
@@ -136,6 +143,7 @@ Everything is driven by two files you edit by hand plus one generated lock file:
 | [`overrides/`](overrides/) | Files copied into the instance as-is (configs etc.). Empty for now |
 | [`tools/modpack.py`](tools/modpack.py) | The build tool. Python 3.11+, standard library only |
 | [`settings.toml`](settings.toml) + [`tools/configure.py`](tools/configure.py) | The settings preset and the script that applies it to an instance |
+| [`companion-mod/`](companion-mod/) | Our own small Fabric mod (Java 25) that adds the missing Mod Menu buttons. Built with Gradle and shipped inside the `.mrpack` |
 | [`tests/`](tests/) | Tests for both scripts (no internet or game needed) plus checks on the real lock and settings files |
 
 **In VS Code** (Terminal → Run Task…, or `Ctrl+Shift+B` for Build):
@@ -144,7 +152,8 @@ Everything is driven by two files you edit by hand plus one generated lock file:
 | --- | --- |
 | Update all mods | `python tools/modpack.py update` |
 | Update one mod | `python tools/modpack.py update skyhanni` |
-| Build .mrpack | `python tools/modpack.py build` → `dist/SkyBlock-QoL-<version>.mrpack` |
+| Build companion mod | `companion-mod\gradlew.bat build` (needs JDK 25; the task points `JAVA_HOME` at `%USERPROFILE%\.jdks\jdk-25.0.4.1+1`) |
+| Build .mrpack | `python tools/modpack.py build` → `dist/SkyBlock-QoL-<version>.mrpack` (the task builds the companion mod first) |
 | Run tests | `python -m unittest discover -s tests -v` |
 | Configure instance (dry run) | `python tools/configure.py --dry-run --verbose` |
 | Configure instance | `python tools/configure.py` |

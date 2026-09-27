@@ -314,6 +314,21 @@ def write_readme_table(lock: dict):
 # ─── build ────────────────────────────────────────────────────────────────────
 
 
+def find_companion_jar(pack: dict) -> tuple[Path, str] | None:
+    """The built companion-mod jar and where it goes in the instance, if pack.toml has one."""
+    companion = pack.get("companion")
+    if not companion:
+        return None
+    jars = [p for p in sorted(ROOT.glob(companion["jar_glob"])) if not p.name.endswith("-sources.jar")]
+    if not jars:
+        fail(f"companion mod not built yet (nothing matches {companion['jar_glob']}); "
+             "run `gradlew build` in companion-mod/ first")
+    if len(jars) > 1:
+        fail(f"more than one companion jar ({', '.join(p.name for p in jars)}); "
+             "run `gradlew clean build` in companion-mod/")
+    return jars[0], companion["install_as"]
+
+
 def cmd_build(version_override: str | None):
     pack = load_pack()
     lock = load_lock()
@@ -349,12 +364,18 @@ def cmd_build(version_override: str | None):
         "dependencies": {"minecraft": mc, "fabric-loader": lock["loader"]["version"]},
     }
 
+    companion = find_companion_jar(pack)
+
     DIST_DIR.mkdir(exist_ok=True)
     safe_name = re.sub(r"[^A-Za-z0-9._-]+", "-", info["name"]).strip("-")
     out = DIST_DIR / f"{safe_name}-{version}.mrpack"
     overrides = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("modrinth.index.json", json.dumps(index, indent=2, ensure_ascii=False))
+        if companion:
+            jar, install_as = companion
+            z.write(jar, f"overrides/{install_as}")
+            overrides += 1
         if OVERRIDES_DIR.is_dir():
             for path in sorted(OVERRIDES_DIR.rglob("*")):
                 if path.is_file() and path.name != ".gitkeep":

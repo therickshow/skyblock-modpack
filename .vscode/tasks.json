@@ -5,7 +5,19 @@
       "label": "Build .mrpack",
       "type": "shell",
       "command": "python tools/modpack.py build",
+      "dependsOn": "Build companion mod",
       "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build companion mod",
+      "type": "shell",
+      "command": "./gradlew build",
+      "windows": { "command": ".\\gradlew.bat build" },
+      "options": {
+        "cwd": "${workspaceFolder}/companion-mod",
+        "env": { "JAVA_HOME": "${env:USERPROFILE}\\.jdks\\jdk-25.0.4.1+1" }
+      },
       "problemMatcher": []
     },
     {
