@@ -122,6 +122,7 @@ Everything is driven by two files you edit by hand plus one generated lock file:
 | [`modpack.lock.json`](modpack.lock.json) | **Generated.** Exact pinned versions, download URLs and hashes |
 | [`overrides/`](overrides/) | Files copied into the instance as-is (configs etc.). Empty for now |
 | [`tools/modpack.py`](tools/modpack.py) | The build tool. Python 3.11+, standard library only |
+| [`tests/`](tests/) | Tests for the build tool (no internet needed) plus checks on the real lock file |
 
 **In VS Code** (Terminal → Run Task…, or `Ctrl+Shift+B` for Build):
 
@@ -130,6 +131,7 @@ Everything is driven by two files you edit by hand plus one generated lock file:
 | Update all mods | `python tools/modpack.py update` |
 | Update one mod | `python tools/modpack.py update skyhanni` |
 | Build .mrpack | `python tools/modpack.py build` → `dist/SkyBlock-QoL-<version>.mrpack` |
+| Run tests | `python -m unittest discover -s tests -v` |
 
 **Add or remove a mod:** edit `mods.toml` (the slug is the last part of its
 `modrinth.com/mod/<slug>` URL), run **Update all mods**, commit `mods.toml` +
@@ -146,5 +148,6 @@ version yet.
 git tag v1.1.0 && git push origin main --tags
 ```
 
-The [Build workflow](.github/workflows/build.yml) builds the `.mrpack` on every push and pull
-request, and on a `v*` tag it publishes a GitHub Release with the file attached.
+The [Build workflow](.github/workflows/build.yml) runs the tests and builds the `.mrpack` on
+every push and pull request, and on a `v*` tag it publishes a GitHub Release with the file
+attached.

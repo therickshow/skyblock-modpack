@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
       - name: Build .mrpack
         run: |
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
