@@ -22,6 +22,18 @@
       "problemMatcher": []
     },
     {
+      "label": "Configure instance (dry run)",
+      "type": "shell",
+      "command": "python tools/configure.py --dry-run --verbose",
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure instance",
+      "type": "shell",
+      "command": "python tools/configure.py",
+      "problemMatcher": []
+    },
+    {
       "label": "Update one mod",
       "type": "shell",
       "command": "python tools/modpack.py update ${input:slugs}",

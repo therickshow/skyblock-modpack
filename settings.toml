@@ -1,0 +1,38 @@
+# Settings that `python tools/configure.py` applies to an installed instance.
+# The game has to have been started once first: mods only create their config files on launch.
+# Close the game before running it, because Minecraft rewrites options.txt when it exits.
+#
+# Every run first saves a backup of the files it touches to <instance>/settings-backups/.
+
+# ─── Keybinds (options.txt) ───────────────────────────────────────────────────────
+# action = key. Action names are the part after "key_" in options.txt.
+# The script refuses to bind a key that another action is already using, so it can never
+# create a new clash.
+[keybinds]
+"key.modmenu.open_menu" = "key.keyboard.right.control"       # Mod Menu: was unbound
+"key.btrbz.toggle_bazaar_orders_hud" = "key.keyboard.end"    # was H, clashed with night vision
+"key.skyblocker.defaultTgl" = "key.keyboard.home"            # was M, clashed with warp menu
+"key.quickActions" = "key.keyboard.right.alt"                # vanilla; was G, clashed with fullbright
+
+# ─── SkyHanni ─────────────────────────────────────────────────────────────────────
+# Turn ON every switch SkyHanni marks as a feature (@FeatureToggle) inside these config
+# sections. That's what its own /shdefaultoptions "turn all on" does. Most SkyHanni
+# features only run on their own island or activity, so they switch themselves on and off.
+# Sections not listed keep SkyHanni's defaults. Dungeons are left to Skyblocker on purpose.
+[skyhanni]
+enable_all_in = ["garden", "fishing", "mining", "slayer", "event.diana"]
+
+# ─── Odin ─────────────────────────────────────────────────────────────────────────
+# Odin starts with every module off. Turn on the end-game helpers that Skyblocker doesn't
+# already do. Names are Odin's display names (as shown in its Right Shift menu).
+# Deliberately left off: Odin's puzzle/terminal solvers, map and secret waypoints
+# (Skyblocker does those), and Mimic / Pre-Spot Alert (they post to party chat for you).
+[odin]
+enable = [
+  # dungeon bosses
+  "Wither Dragons", "Terracotta Timer", "King Relic", "Tick Timers", "Spirit Bear",
+  # during runs
+  "Blood Camp", "Blessing Display", "Secret Clicked", "Invincibility Timer",
+  # Kuudra
+  "Kuudra Info", "Supply Helper", "Build Helper", "Pearl Waypoints", "Fresh Tools",
+]

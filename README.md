@@ -15,16 +15,29 @@ performance mods, plus the big SkyBlock mods for dungeons, fishing, farming, the
 
 ## First launch
 
+1. Start the game once and close it again. Mods only create their config files on launch.
+2. Optional: run `python tools/configure.py` from this repo to apply the preset in
+   [`settings.toml`](settings.toml) (see [Preset settings](#preset-settings)).
+
 - **Settings:** every mod has a config screen under **Mods** (Mod Menu) on the title/pause screen.
-  Shortcuts: SkyHanni `/sh`, Skyblocker `/skyblocker config`, Feesh `/feesh`, BtrBz `/btrbz`,
-  MarketGuard `/mg`, profile viewer `/pv <player>`.
-- **Keys:** **G** fullbright, **H** night vision, **C** zoom. Controls has a search bar. Check it for
-  conflicts, since this many mods add a lot of keybinds.
-- **Dungeons overlap on purpose.** Skyblocker, Odin and Secret Routes each have puzzle solvers
-  and/or secret waypoints. Try them, then switch off the duplicates so you don't see double
-  waypoints.
-- **Secret Routes can auto-download its own updates.** Turn that off in its settings. The pack
-  pins every version, and an extra jar in the mods folder will cause a duplicate-mod crash.
+  Shortcuts: SkyHanni `/sh`, Skyblocker `/skyblocker config`, Odin **Right Shift**, Feesh `/feesh`,
+  BtrBz `/btrbz`, MarketGuard `/mg`, profile viewer `/pv <player>`.
+- **Mod Menu has no key by default.** The preset puts it on **Right Ctrl**.
+- **Secret Routes only *checks* for updates.** Its auto-download is off by default. Leave it
+  off: the pack pins every version, and an extra jar in the mods folder causes a
+  duplicate-mod crash.
+
+## Preset settings
+
+`tools/configure.py` applies [`settings.toml`](settings.toml) to an installed instance. Close the
+game first. Every run backs up the files it changes to `<instance>/settings-backups/`, and
+`--dry-run` shows what it would do without writing anything.
+
+| Area | What the preset does |
+| --- | --- |
+| Keys | Mod Menu → **Right Ctrl**. **C** = zoom. Clashes fixed: **G** = fullbright, **H** = night vision, **M** = warp menu; BtrBz Bazaar HUD → **End**, Skyblocker tab-HUD reset → **Home**, vanilla Quick Actions → **Right Alt** |
+| SkyHanni | Turns on every feature switch in Garden, Fishing, Mining, Slayer and Diana, the same as its own `/shdefaultoptions` "turn all on". Features only run on their own island or activity |
+| Dungeons | Skyblocker does map, score, secret waypoints and puzzle/terminal solvers (already on by default). Odin adds end-game helpers only: M7 dragons + relics, terracotta, tick timers, spirit bear, blood camp, blessings, secret feedback, invincibility timer, and Kuudra (info, supplies, build, pearls, fresh tools). Odin's duplicate solvers stay off, and so do Mimic and Pre-Spot Alert, which post to party chat for you |
 
 ## Hypixel rules
 
@@ -122,7 +135,8 @@ Everything is driven by two files you edit by hand plus one generated lock file:
 | [`modpack.lock.json`](modpack.lock.json) | **Generated.** Exact pinned versions, download URLs and hashes |
 | [`overrides/`](overrides/) | Files copied into the instance as-is (configs etc.). Empty for now |
 | [`tools/modpack.py`](tools/modpack.py) | The build tool. Python 3.11+, standard library only |
-| [`tests/`](tests/) | Tests for the build tool (no internet needed) plus checks on the real lock file |
+| [`settings.toml`](settings.toml) + [`tools/configure.py`](tools/configure.py) | The settings preset and the script that applies it to an instance |
+| [`tests/`](tests/) | Tests for both scripts (no internet or game needed) plus checks on the real lock and settings files |
 
 **In VS Code** (Terminal → Run Task…, or `Ctrl+Shift+B` for Build):
 
@@ -132,6 +146,8 @@ Everything is driven by two files you edit by hand plus one generated lock file:
 | Update one mod | `python tools/modpack.py update skyhanni` |
 | Build .mrpack | `python tools/modpack.py build` → `dist/SkyBlock-QoL-<version>.mrpack` |
 | Run tests | `python -m unittest discover -s tests -v` |
+| Configure instance (dry run) | `python tools/configure.py --dry-run --verbose` |
+| Configure instance | `python tools/configure.py` |
 
 **Add or remove a mod:** edit `mods.toml` (the slug is the last part of its
 `modrinth.com/mod/<slug>` URL), run **Update all mods**, commit `mods.toml` +
