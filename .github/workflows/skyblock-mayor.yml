@@ -1,0 +1,45 @@
+name: SkyBlock mayor snapshot
+
+# Fetches Hypixel's public election API and commits the result. Exists because the cloud
+# Claude Code routine that refreshes the "Road to 500 MP" artifact's mayor info cannot reach
+# api.hypixel.net directly (blocked by its sandbox's network egress proxy) but CAN read a file
+# already committed to this repo. GitHub Actions runners have normal internet access, so this
+# job does the fetching and the routine just reads data/skyblock-election.json.
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Fetch Hypixel election data
+        run: |
+          mkdir -p data
+          curl -sS --fail -A "skyblock-modpack-mayor-snapshot (github actions)" \
+            "https://api.hypixel.net/v2/resources/skyblock/election" -o data/skyblock-election.json
+          python3 -c "
+          import json
+          d = json.load(open('data/skyblock-election.json'))
+          assert d.get('success') is True, 'API returned success=false'
+          assert d.get('mayor', {}).get('name'), 'no mayor.name in response'
+          "
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/skyblock-election.json
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "Update SkyBlock election snapshot [skip ci]"
+            git push
+          fi

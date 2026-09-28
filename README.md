@@ -176,3 +176,11 @@ git tag v1.1.0 && git push origin main --tags
 The [Build workflow](.github/workflows/build.yml) runs the tests and builds the `.mrpack` on
 every push and pull request, and on a `v*` tag it publishes a GitHub Release with the file
 attached.
+
+## data/skyblock-election.json
+
+Unrelated to the pack itself. The [mayor snapshot workflow](.github/workflows/skyblock-mayor.yml)
+fetches Hypixel's public election API every 3 hours and commits the result here. A scheduled
+Claude Code cloud routine (see [claude.ai/code/routines](https://claude.ai/code/routines)) reads
+it to keep the "Road to 500 MP" SkyBlock artifact's mayor info current, since that routine's
+sandbox can't reach `api.hypixel.net` directly. Safe to ignore.
