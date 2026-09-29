@@ -63,9 +63,9 @@ _Minecraft **26.2**, Fabric Loader **0.19.5**._
 
 | Mod | Version | What it does |
 | --- | --- | --- |
-| [Skyblocker • Hypixel Skyblock](https://modrinth.com/mod/skyblocker-liap) | `v6.10.4+26.2` | All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices, SkyBlock items/recipes in JEI |
+| [Skyblocker • Hypixel Skyblock](https://modrinth.com/mod/skyblocker-liap) | `v6.10.4+26.2` | All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices |
 | [SkyHanni for Hypixel SkyBlock](https://modrinth.com/mod/skyhanni) | `9.0.0` | Garden/farming overlays (crop milestones, visitor helper, money/hr, pests), plus slayer, mining, fishing, Diana and Rift features. `/sh` |
-| [SkyBlock Profile Viewer](https://modrinth.com/mod/skyblock-profile-viewer) | `1.8.9` | `/pv <player>`: full profile viewer, handy for party-finder checks |
+| [SkyBlock Profile Viewer](https://modrinth.com/mod/skyblock-profile-viewer) | `1.9.2` | `/pv <player>`: full profile viewer, handy for party-finder checks |
 | [Skyblock Enhanced Storage](https://modrinth.com/mod/skyblock-enhanced-storage) | `v1.2.2-mc26.2` | All Ender Chest + Backpack pages in one searchable screen |
 | [Modern Warp Menu](https://modrinth.com/mod/modern-warp-menu) | `0.2.4+26.2` | Clickable island map warp menu (Fancy Warp Menu port) |
 | [Catharsis](https://modrinth.com/mod/catharsis) | `1.0.0-beta.22` _(beta)_ | Lets SkyBlock texture packs retexture items (needed by modern Furfsky / Hypixel+ style packs) |
@@ -95,7 +95,7 @@ _Minecraft **26.2**, Fabric Loader **0.19.5**._
 
 | Mod | Version | What it does |
 | --- | --- | --- |
-| [Just Enough Items (JEI)](https://modrinth.com/mod/jei) | `30.29.0.201` | Item & recipe browser. Skyblocker fills it with every SkyBlock item and recipe |
+| [Enhanced SkyRecipes](https://modrinth.com/mod/enhanced-skyrecipes) | `v0.5.12-mc26.2` _(beta)_ | SkyBlock-only recipe browser: 8,000+ items, crafting/forge recipes, mob drops, NPC shops, essence upgrades, reforges. No vanilla recipes cluttering it up like JEI had |
 
 #### Vanilla QoL
 
@@ -128,7 +128,7 @@ _Minecraft **26.2**, Fabric Loader **0.19.5**._
 | [ImmediatelyFast](https://modrinth.com/mod/immediatelyfast) | `1.16.5+26.2-fabric` | Faster HUD, text and GUI rendering (lots of SkyBlock overlays) |
 | [Dynamic FPS](https://modrinth.com/mod/dynamic-fps) | `3.11.9` | Lowers FPS when the game is in the background or idle (AFK garden, alt-tab) |
 
-Plus 9 libraries pulled in automatically: [Cloth Config API](https://modrinth.com/mod/cloth-config), [Fabric API](https://modrinth.com/mod/fabric-api), [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin), [Hypixel Mod API](https://modrinth.com/mod/hypixel-mod-api), [oωo (owo-lib)](https://modrinth.com/mod/owo-lib), [Text Placeholder API](https://modrinth.com/mod/placeholder-api), [Searchables](https://modrinth.com/mod/searchables), [UI Lib](https://modrinth.com/mod/ui-lib), [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl).
+Plus 10 libraries pulled in automatically: [Cloth Config API](https://modrinth.com/mod/cloth-config), [Fabric API](https://modrinth.com/mod/fabric-api), [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin), [Hypixel Mod API](https://modrinth.com/mod/hypixel-mod-api), [oωo (owo-lib)](https://modrinth.com/mod/owo-lib), [Text Placeholder API](https://modrinth.com/mod/placeholder-api), [Reliable Recipe Viewer](https://modrinth.com/mod/rrv), [Searchables](https://modrinth.com/mod/searchables), [UI Lib](https://modrinth.com/mod/ui-lib), [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl).
 <!-- mods:end -->
 
 ## Working on the pack

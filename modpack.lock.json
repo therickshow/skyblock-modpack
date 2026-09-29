@@ -28,7 +28,7 @@
       ],
       "incompatible": [],
       "category": "SkyBlock: core",
-      "why": "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices, SkyBlock items/recipes in JEI"
+      "why": "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices"
     },
     {
       "slug": "skyhanni",
@@ -60,15 +60,15 @@
       "slug": "skyblock-profile-viewer",
       "title": "SkyBlock Profile Viewer",
       "project_id": "8yqXwFLl",
-      "version_id": "2n5LJtoe",
-      "version": "1.8.9",
+      "version_id": "i0l6DQfj",
+      "version": "1.9.2",
       "channel": "release",
-      "published": "2026-08-07",
-      "file": "SkyBlockPv-1.8.9-26.2.jar",
-      "url": "https://cdn.modrinth.com/data/8yqXwFLl/versions/2n5LJtoe/SkyBlockPv-1.8.9-26.2.jar",
-      "size": 11112349,
-      "sha1": "bd3e363f693bada294f2751de07e5e615072ffee",
-      "sha512": "f5fb2f59e233d221ec439d181f4c5378dc04bb3731d8ab6cb2c02542f677cf31a8cf0dc7bbaa2d1489558b4d6591cba441205cb62b5df263c9e1349871f04fa6",
+      "published": "2026-09-28",
+      "file": "SkyBlockPv-1.9.2-26.2.jar",
+      "url": "https://cdn.modrinth.com/data/8yqXwFLl/versions/i0l6DQfj/SkyBlockPv-1.9.2-26.2.jar",
+      "size": 10472684,
+      "sha1": "6a2077c3d6b8e596a8ff153495e5b2d9e72a048a",
+      "sha512": "aa45a8890ced005dafdd9878b20ce4f5c83a028ead49bf071763e39915854ab3cc22e0d3120eb9e0e6d98968604c4e0ea04455af3657e85b8728e5cb024f1bc9",
       "env": {
         "client": "required",
         "server": "unsupported"
@@ -304,26 +304,29 @@
       "why": "Blocks AH clicks priced far over/under Lowest BIN (typo protection). `/mg`"
     },
     {
-      "slug": "jei",
-      "title": "Just Enough Items (JEI)",
-      "project_id": "u6dRKJwZ",
-      "version_id": "d3HeviSL",
-      "version": "30.29.0.201",
-      "channel": "release",
-      "published": "2026-09-02",
-      "file": "jei-26.2-fabric-30.29.0.201.jar",
-      "url": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/d3HeviSL/jei-26.2-fabric-30.29.0.201.jar",
-      "size": 1860103,
-      "sha1": "e82447aff07e87a372cf817bc9c28b0d77b6f55c",
-      "sha512": "2279cb0ec4e41d9eebad80c2ecac76d19c8bc8e5aac69ba13f35b77494625c70d66edc74d59959116012bfb2f464b55806dd69fbf6387f25679b1553953e329a",
+      "slug": "enhanced-skyrecipes",
+      "title": "Enhanced SkyRecipes",
+      "project_id": "Q7VEfkvq",
+      "version_id": "rMYF3vpw",
+      "version": "v0.5.12-mc26.2",
+      "channel": "beta",
+      "published": "2026-09-27",
+      "file": "skyrecipes-0.5.12+26.2.jar",
+      "url": "https://cdn.modrinth.com/data/Q7VEfkvq/versions/rMYF3vpw/skyrecipes-0.5.12%2B26.2.jar",
+      "size": 1045309,
+      "sha1": "f584aec1c191d5d42acb12a93e88b905b4c04d03",
+      "sha512": "e4ef30dc12555c31d5ff288b27b98a2b125e6e9ec6546246272175361b2e56338af7fc581b382bd38d286da0039c2ea8917d449784aaab2357a045b47213bd8c",
       "env": {
         "client": "required",
-        "server": "optional"
+        "server": "unsupported"
       },
-      "requires": [],
+      "requires": [
+        "5VolwT6c",
+        "P7dR8mSH"
+      ],
       "incompatible": [],
       "category": "Recipes",
-      "why": "Item & recipe browser. Skyblocker fills it with every SkyBlock item and recipe"
+      "why": "SkyBlock-only recipe browser: 8,000+ items, crafting/forge recipes, mob drops, NPC shops, essence upgrades, reforges. No vanilla recipes cluttering it up like JEI had"
     },
     {
       "slug": "modmenu",
@@ -872,6 +875,7 @@
         "chatpatches",
         "controlling",
         "dynamic-fps",
+        "enhanced-skyrecipes",
         "entityculling",
         "feesh",
         "gamma-utils",
@@ -882,6 +886,7 @@
         "no-chat-reports",
         "odin",
         "owo-lib",
+        "rrv",
         "scamscreener",
         "searchables",
         "skyblock-enhanced-storage",
@@ -992,6 +997,31 @@
       "incompatible": [],
       "required_by": [
         "modmenu"
+      ]
+    },
+    {
+      "slug": "rrv",
+      "title": "Reliable Recipe Viewer",
+      "project_id": "5VolwT6c",
+      "version_id": "86AyGJ9m",
+      "version": "8.10.9+26.2-fabric",
+      "channel": "release",
+      "published": "2026-09-25",
+      "file": "reliable-recipe-viewer-8.10.9+26.2-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/5VolwT6c/versions/86AyGJ9m/reliable-recipe-viewer-8.10.9%2B26.2-fabric.jar",
+      "size": 834844,
+      "sha1": "401bf09014203b141bf54930ea99ce3dccd29543",
+      "sha512": "cc4c1e300819e042d71446be9d0168c313ff3f7471c19e653c032c5292b4851681b40434b3282a4b46a839bcd4217921d6f5c519be88bac851d26d033d669bde",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "requires": [
+        "P7dR8mSH"
+      ],
+      "incompatible": [],
+      "required_by": [
+        "enhanced-skyrecipes"
       ]
     },
     {
