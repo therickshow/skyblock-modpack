@@ -16,7 +16,7 @@
 [[mod]]
 slug = "skyblocker-liap"
 category = "SkyBlock: core"
-why = "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices, SkyBlock items/recipes in JEI"
+why = "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices"
 
 [[mod]]
 slug = "skyhanni"
@@ -82,9 +82,9 @@ why = "Blocks AH clicks priced far over/under Lowest BIN (typo protection). `/mg
 # ─── Recipes ────────────────────────────────────────────────────────────────────
 
 [[mod]]
-slug = "jei"
+slug = "enhanced-skyrecipes"
 category = "Recipes"
-why = "Item & recipe browser. Skyblocker fills it with every SkyBlock item and recipe"
+why = "SkyBlock-only recipe browser: 8,000+ items, crafting/forge recipes, mob drops, NPC shops, essence upgrades, reforges. No vanilla recipes cluttering it up like JEI had"
 
 # ─── Vanilla QoL ────────────────────────────────────────────────────────────────
 
