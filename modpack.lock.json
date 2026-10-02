@@ -28,7 +28,7 @@
       ],
       "incompatible": [],
       "category": "SkyBlock: core",
-      "why": "All-rounder: dungeon map & score, secret waypoints, puzzle + terminal solvers, Croesus profit, item prices"
+      "why": "Dungeons (map, score, secret waypoints, puzzle + terminal solvers, Croesus), mining, slayers, Kuudra, Galatea, tab HUD, `/pv` profile viewer"
     },
     {
       "slug": "skyhanni",
@@ -54,32 +54,7 @@
       ],
       "incompatible": [],
       "category": "SkyBlock: core",
-      "why": "Garden/farming overlays (crop milestones, visitor helper, money/hr, pests), plus slayer, mining, fishing, Diana and Rift features. `/sh`"
-    },
-    {
-      "slug": "skyblock-profile-viewer",
-      "title": "SkyBlock Profile Viewer",
-      "project_id": "8yqXwFLl",
-      "version_id": "i0l6DQfj",
-      "version": "1.9.2",
-      "channel": "release",
-      "published": "2026-09-28",
-      "file": "SkyBlockPv-1.9.2-26.2.jar",
-      "url": "https://cdn.modrinth.com/data/8yqXwFLl/versions/i0l6DQfj/SkyBlockPv-1.9.2-26.2.jar",
-      "size": 10472684,
-      "sha1": "6a2077c3d6b8e596a8ff153495e5b2d9e72a048a",
-      "sha512": "aa45a8890ced005dafdd9878b20ce4f5c83a028ead49bf071763e39915854ab3cc22e0d3120eb9e0e6d98968604c4e0ea04455af3657e85b8728e5cb024f1bc9",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "Ha28R6CL",
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "category": "SkyBlock: core",
-      "why": "`/pv <player>`: full profile viewer, handy for party-finder checks"
+      "why": "Garden and farming (visitors, pests, crop milestones), fishing, Diana, the Rift, Hoppity, Trevor. `/sh`"
     },
     {
       "slug": "skyblock-enhanced-storage",
@@ -203,105 +178,7 @@
       ],
       "incompatible": [],
       "category": "Dungeons & Kuudra",
-      "why": "End-game dungeons & Kuudra: solvers, teammate/starred-mob highlight, blood camp helpers, custom room waypoints"
-    },
-    {
-      "slug": "secret-routes-mod",
-      "title": "Secret Routes Mod",
-      "project_id": "l1qibtk8",
-      "version_id": "dhYl9Bh4",
-      "version": "1.0.0+26.2",
-      "channel": "release",
-      "published": "2026-08-05",
-      "file": "SecretRoutes-1.0.0+26.2.jar",
-      "url": "https://cdn.modrinth.com/data/l1qibtk8/versions/dhYl9Bh4/SecretRoutes-1.0.0%2B26.2.jar",
-      "size": 779828,
-      "sha1": "c66da26f18673da9469ed28750a51dfc99ec131a",
-      "sha512": "ab7061d2af6167b816cfd04758d32fc794b9a51532b8993965879152a01822397a6a5860e8261cce606b5136be9967abc15a3684358202e1bdf307c1bbcf9676",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [],
-      "incompatible": [],
-      "category": "Dungeons & Kuudra",
-      "why": "Recorded secret routes for every room with etherwarp, pearl, stonk and superboom waypoints"
-    },
-    {
-      "slug": "feesh",
-      "title": "Feesh",
-      "project_id": "QCpogurE",
-      "version_id": "fXOT51fP",
-      "version": "1.14.0",
-      "channel": "release",
-      "published": "2026-09-14",
-      "file": "Feesh-1.14.0+26.2-fabric.jar",
-      "url": "https://cdn.modrinth.com/data/QCpogurE/versions/fXOT51fP/Feesh-1.14.0%2B26.2-fabric.jar",
-      "size": 2766844,
-      "sha1": "b1372cc881c37075b10a94063506e202abb6dcdb",
-      "sha512": "41285700ddb6307dc0149a531a55c3a1ac51a502b9a9a4e960253e4555caee0ac70483e173ac1d4d29881df99fc234de59314bceeb98276dfe54bd1a6c99ad0e",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "Ha28R6CL",
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "category": "Fishing",
-      "why": "Fishing QoL mod (set it up with `/feesh`). SkyHanni adds sea-creature & trophy-fish trackers on top"
-    },
-    {
-      "slug": "btrbz",
-      "title": "BtrBz",
-      "project_id": "IzWPcaNg",
-      "version_id": "1U9AgZ1F",
-      "version": "0.12.0-alpha+26.2",
-      "channel": "alpha",
-      "published": "2026-09-16",
-      "file": "btrbz-0.12.0-alpha+26.2.jar",
-      "url": "https://cdn.modrinth.com/data/IzWPcaNg/versions/1U9AgZ1F/btrbz-0.12.0-alpha%2B26.2.jar",
-      "size": 6486088,
-      "sha1": "d949373795e0451680897b34a6c5d01f2ec4e72b",
-      "sha512": "b018e39a8327a39b9127a8c9211ee2314f3fb930415802bbcccfa08f744069c69b1045254cd42cec6f36aa8d0dbab01e287388c9d7add952ba166b749351d875",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "1A2mKfBx",
-        "1eAoo2KR",
-        "P7dR8mSH",
-        "ccKDOlHs"
-      ],
-      "incompatible": [],
-      "category": "Bazaar & Auction House",
-      "why": "Bazaar order tracking, outbid/undercut alerts, price alerts, order safety checks. `/btrbz`"
-    },
-    {
-      "slug": "marketguard",
-      "title": "MarketGuard for Hypixel SkyBlock",
-      "project_id": "ji4JdpCu",
-      "version_id": "ufTA1jo1",
-      "version": "1.5.0+26.2",
-      "channel": "release",
-      "published": "2026-09-20",
-      "file": "marketguard-1.5.0+26.2.jar",
-      "url": "https://cdn.modrinth.com/data/ji4JdpCu/versions/ufTA1jo1/marketguard-1.5.0%2B26.2.jar",
-      "size": 14495032,
-      "sha1": "a535ca7fd6aadbf32a93f6c3b95081fd7d2b8411",
-      "sha512": "dbfad8bc529010c953d3eec5dbdc01a7bbdf51d92084e3f445ffbfa0f2b8a4230dd855d4934b80aede859396afd192d98e571a310811152471f101b8fbeebeda",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "category": "Bazaar & Auction House",
-      "why": "Blocks AH clicks priced far over/under Lowest BIN (typo protection). `/mg`"
+      "why": "Dungeon boss timers (F6/F7), blood camp and blessing display, Kuudra HP and Fresh Tools timer. Only the parts Skyblocker doesn't do are switched on"
     },
     {
       "slug": "enhanced-skyrecipes",
@@ -376,85 +253,7 @@
       ],
       "incompatible": [],
       "category": "Vanilla QoL",
-      "why": "Fullbright: **G** toggles high gamma, **H** toggles client-side night vision"
-    },
-    {
-      "slug": "zoomify",
-      "title": "Zoomify (Zoom)",
-      "project_id": "w7ThoJFB",
-      "version_id": "2Qr8jSFc",
-      "version": "2.16.3+26.2",
-      "channel": "release",
-      "published": "2026-09-23",
-      "file": "zoomify-2.16.3+26.2.jar",
-      "url": "https://cdn.modrinth.com/data/w7ThoJFB/versions/2Qr8jSFc/zoomify-2.16.3%2B26.2.jar",
-      "size": 563034,
-      "sha1": "2cce6cffc5f34d0ee311123a89cb7448f96584d0",
-      "sha512": "0bd57f133d3bc6d82703733d73596a530b5ddb709a837b4741fae64ebafbefdad08df133ab386a246f1632add635bf4047fa5ec59c804e4feed57808fe336365",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "1eAoo2KR",
-        "Ha28R6CL",
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "category": "Vanilla QoL",
-      "why": "Zoom (hold **C**, scroll to adjust)"
-    },
-    {
-      "slug": "controlling",
-      "title": "Controlling",
-      "project_id": "xv94TkTM",
-      "version_id": "sZHXONgm",
-      "version": "26.2.4",
-      "channel": "release",
-      "published": "2026-09-19",
-      "file": "Controlling-fabric-26.2-26.2.4.jar",
-      "url": "https://cdn.modrinth.com/data/xv94TkTM/versions/sZHXONgm/Controlling-fabric-26.2-26.2.4.jar",
-      "size": 86209,
-      "sha1": "fb95a0c2ef8aad5c5f846aabfca11d86fa4d527f",
-      "sha512": "27147edf57915d88db8d2cbda8a54e97f4dd36bb7379e191d6fec67fe2c42f8f1f96d75a5afc8b84c9177661089ec28f0e89b519321e5d2fcf512a3df27e22c4",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "P7dR8mSH",
-        "fuuu3xnx"
-      ],
-      "incompatible": [],
-      "category": "Vanilla QoL",
-      "why": "Search bar in Controls, which you'll want with this many keybinds"
-    },
-    {
-      "slug": "chatpatches",
-      "title": "Chat Patches",
-      "project_id": "MOqt4Z5n",
-      "version_id": "iEULL77f",
-      "version": "8.0-alpha.11+26.2-fabric",
-      "channel": "alpha",
-      "published": "2026-07-01",
-      "file": "chatpatches-8.0-alpha.11+26.2-fabric.jar",
-      "url": "https://cdn.modrinth.com/data/MOqt4Z5n/versions/iEULL77f/chatpatches-8.0-alpha.11%2B26.2-fabric.jar",
-      "size": 1487884,
-      "sha1": "7d2539a4f4fd5bd4a19798cc73b1431511de1431",
-      "sha512": "36577af7bdd6785bc00ffc537ad02b9c26c09865c0e91170b411736f8cd8c09149f0fec18fe41234bf74b409784fb60dac44e0f3a8227e29903b6125cbf7bdc9",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "1eAoo2KR",
-        "P7dR8mSH"
-      ],
-      "incompatible": [
-        "8qkXwOnk"
-      ],
-      "category": "Vanilla QoL",
-      "why": "Longer chat history kept between sessions, timestamps, duplicate-message counter"
+      "why": "Fullbright for mining caves and dungeons: **G** toggles high gamma, **H** toggles client-side night vision"
     },
     {
       "slug": "tooltip-scroll",
@@ -479,96 +278,6 @@
       "incompatible": [],
       "category": "Vanilla QoL",
       "why": "Scroll long SkyBlock tooltips that run off the screen"
-    },
-    {
-      "slug": "auth-me",
-      "title": "Auth Me",
-      "project_id": "yjgIrBjZ",
-      "version_id": "KKsXwobI",
-      "version": "v9.3.0+26.2",
-      "channel": "release",
-      "published": "2026-06-21",
-      "file": "authme-fabric-9.3.0+26.2.jar",
-      "url": "https://cdn.modrinth.com/data/yjgIrBjZ/versions/KKsXwobI/authme-fabric-9.3.0%2B26.2.jar",
-      "size": 1542637,
-      "sha1": "fbe90e617537c960eae71b52da0045c981856661",
-      "sha512": "b2329250a424655d32d760deef76a33626c4c25598ca485735814206725e16de2bd419593003097e2fb800992fbac63dbb866f740142ddd50ee3beb492c68373",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [],
-      "incompatible": [],
-      "category": "Vanilla QoL",
-      "why": "Re-login from the disconnect screen without restarting the game"
-    },
-    {
-      "slug": "no-chat-reports",
-      "title": "No Chat Reports",
-      "project_id": "qQyHxfxd",
-      "version_id": "aDbxaVTi",
-      "version": "Fabric-26.2-v2.20.2",
-      "channel": "release",
-      "published": "2026-08-18",
-      "file": "NoChatReports-FABRIC-26.2-v2.20.2.jar",
-      "url": "https://cdn.modrinth.com/data/qQyHxfxd/versions/aDbxaVTi/NoChatReports-FABRIC-26.2-v2.20.2.jar",
-      "size": 239602,
-      "sha1": "680b60f6ec5c09a646e7a76bb17cf551608051cd",
-      "sha512": "aa14fa2d1cc94803f4c965fd817a945823037237bd7a1fea9dc9a0c6427084d25b8d9273da76bc132fe68794d2be8b91540bfff1309125aea37820c12bff0268",
-      "env": {
-        "client": "required",
-        "server": "optional"
-      },
-      "requires": [
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "category": "Vanilla QoL",
-      "why": "Strips chat signing so messages can't be reported to Mojang"
-    },
-    {
-      "slug": "resourcepackcached",
-      "title": "ResourcePackCached",
-      "project_id": "d4phKsx2",
-      "version_id": "fYBMerql",
-      "version": "1.2.7",
-      "channel": "release",
-      "published": "2026-07-17",
-      "file": "rpc-1.2.7+26.1-26.2.jar",
-      "url": "https://cdn.modrinth.com/data/d4phKsx2/versions/fYBMerql/rpc-1.2.7%2B26.1-26.2.jar",
-      "size": 15519,
-      "sha1": "83d1c3896d7bb50654b77229f0a95edc07fc9194",
-      "sha512": "986b50c766456a6f1c07a7923486fe34f04acff38753ffd36b7044479de5e5aba4a1c4d78852c004bef7ab510786ba7384ee921a4d5d69eed31b7fe518b2567d",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [],
-      "incompatible": [],
-      "category": "Vanilla QoL",
-      "why": "Keeps server resource packs loaded so rejoining Hypixel is faster"
-    },
-    {
-      "slug": "crash-assistant",
-      "title": "Crash Assistant",
-      "project_id": "ix1qq8Ux",
-      "version_id": "alR3tamq",
-      "version": "1.11.14",
-      "channel": "release",
-      "published": "2026-09-20",
-      "file": "CrashAssistant-fabric-26.2-26.3-1.11.14.jar",
-      "url": "https://cdn.modrinth.com/data/ix1qq8Ux/versions/alR3tamq/CrashAssistant-fabric-26.2-26.3-1.11.14.jar",
-      "size": 3464190,
-      "sha1": "dea53a10e5fbfaacd18e212a0eb0fe328b3e9467",
-      "sha512": "eab56ff4773821ea74c16987a986032e0d41119078efed17f66e4d6f1e19ab43e1e465463b09386644c4ae73942909f29ff725736e2ea1ad6de9b8313080de31",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [],
-      "incompatible": [],
-      "category": "Vanilla QoL",
-      "why": "If the game crashes, shows which mod caused it instead of a wall of log"
     },
     {
       "slug": "sodium",
@@ -639,30 +348,6 @@
       "incompatible": [],
       "category": "Performance",
       "why": "Cleaner tabbed video settings screen"
-    },
-    {
-      "slug": "iris",
-      "title": "Iris Shaders",
-      "project_id": "YL57xq9U",
-      "version_id": "gxZWWnKH",
-      "version": "1.11.4+26.2-fabric",
-      "channel": "release",
-      "published": "2026-09-13",
-      "file": "iris-fabric-1.11.4+mc26.2.jar",
-      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/gxZWWnKH/iris-fabric-1.11.4%2Bmc26.2.jar",
-      "size": 2821616,
-      "sha1": "bd0b24731a94b8fe164531e6345718d30ab08ed2",
-      "sha512": "dee955580976aebc92373f5c2d88398ad1019b043c6254a41fe7ab8a6ca3a5ff29d58df2b22ec43a31198beb769e814658eef06fbf980066a2e2c216eeafd32a",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "AANobbMI"
-      ],
-      "incompatible": [],
-      "category": "Performance",
-      "why": "Shader support (off by default, costs nothing unless you pick a shaderpack)"
     },
     {
       "slug": "lithium",
@@ -870,32 +555,22 @@
       "requires": [],
       "incompatible": [],
       "required_by": [
-        "btrbz",
         "catharsis",
-        "chatpatches",
-        "controlling",
         "dynamic-fps",
         "enhanced-skyrecipes",
         "entityculling",
-        "feesh",
         "gamma-utils",
-        "marketguard",
         "modern-warp-menu",
         "modernfix-mvus",
         "modmenu",
-        "no-chat-reports",
         "odin",
-        "owo-lib",
         "rrv",
         "scamscreener",
-        "searchables",
         "skyblock-enhanced-storage",
-        "skyblock-profile-viewer",
         "skyblocker-liap",
         "skyhanni",
         "tooltip-scroll",
-        "yacl",
-        "zoomify"
+        "yacl"
       ]
     },
     {
@@ -919,12 +594,9 @@
       "incompatible": [],
       "required_by": [
         "catharsis",
-        "feesh",
         "odin",
-        "skyblock-profile-viewer",
         "skyblocker-liap",
-        "skyhanni",
-        "zoomify"
+        "skyhanni"
       ]
     },
     {
@@ -947,33 +619,7 @@
       "requires": [],
       "incompatible": [],
       "required_by": [
-        "btrbz",
         "skyhanni"
-      ]
-    },
-    {
-      "slug": "owo-lib",
-      "title": "oωo (owo-lib)",
-      "project_id": "ccKDOlHs",
-      "version_id": "1h9g10ru",
-      "version": "0.13.1+26.2",
-      "channel": "release",
-      "published": "2026-08-19",
-      "file": "owo-lib-0.13.1+26.2.jar",
-      "url": "https://cdn.modrinth.com/data/ccKDOlHs/versions/1h9g10ru/owo-lib-0.13.1%2B26.2.jar",
-      "size": 2269252,
-      "sha1": "3111139453af67f14cb32e572bde7ae93126477b",
-      "sha512": "d7393129fa9d8c42c244b96fa66bdbbbcd23967fc6d393a689fbf1b0ee11f6da297c2ddcde3c3e476d2d07b73b600ad3d68c739786c729a4dc13a03e72ac0f82",
-      "env": {
-        "client": "required",
-        "server": "required"
-      },
-      "requires": [
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "required_by": [
-        "btrbz"
       ]
     },
     {
@@ -1025,31 +671,6 @@
       ]
     },
     {
-      "slug": "searchables",
-      "title": "Searchables",
-      "project_id": "fuuu3xnx",
-      "version_id": "bvFby61J",
-      "version": "1.0.1",
-      "channel": "release",
-      "published": "2026-06-17",
-      "file": "Searchables-fabric-26.2-1.0.1.jar",
-      "url": "https://cdn.modrinth.com/data/fuuu3xnx/versions/bvFby61J/Searchables-fabric-26.2-1.0.1.jar",
-      "size": 78982,
-      "sha1": "73c1917f4ff056254c95f50a5acb18d16384139a",
-      "sha512": "342f6b9ddee7391f0f5c30090dc7b7fe0b9638c86b729d3e989360ccdf5e5a85d729decc3e27efcdaeaad6b4696e9dd8fb48391c803d8324195b6f5194761a70",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "requires": [
-        "P7dR8mSH"
-      ],
-      "incompatible": [],
-      "required_by": [
-        "controlling"
-      ]
-    },
-    {
       "slug": "ui-lib",
       "title": "UI Lib",
       "project_id": "AOEDs9Al",
@@ -1094,11 +715,48 @@
       ],
       "incompatible": [],
       "required_by": [
-        "btrbz",
-        "chatpatches",
-        "modern-warp-menu",
-        "zoomify"
+        "modern-warp-menu"
       ]
+    }
+  ],
+  "resourcepacks": [
+    {
+      "slug": "clean-pvp-texturepack",
+      "title": "Clean PvP texturepack",
+      "project_id": "FrY0cutY",
+      "version_id": "1KOAaYEh",
+      "version": "26.2+",
+      "channel": "release",
+      "published": "2026-07-01",
+      "file": "Clean PvP.zip",
+      "url": "https://cdn.modrinth.com/data/FrY0cutY/versions/1KOAaYEh/Clean%20PvP.zip",
+      "size": 1698200,
+      "sha1": "2bb04402e7b1a9d6cfaa307a1aa37523cb75a6bc",
+      "sha512": "ee1adbb92824801f20fbc6b51bc72e54aa97950540162ba445dd1027938cf8a5f0009db9132030e1a7e7b3b5ee00c27eefed84ee0d536b030560c2d077797f07",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "why": "Clean, minimal default edit (short swords, tidy tools and GUI), in the spirit of the ThirtyVirus pack"
+    },
+    {
+      "slug": "skyblock-dark-ui",
+      "title": "Skyblock Dark UI",
+      "project_id": "Ed25eRJG",
+      "version_id": "vDsMM5iE",
+      "version": "1.18",
+      "channel": "release",
+      "published": "2026-08-29",
+      "file": "Skyblock Dark UI 1.18 for 26.1.2+.zip",
+      "url": "https://cdn.modrinth.com/data/Ed25eRJG/versions/vDsMM5iE/Skyblock%20Dark%20UI%201.18%20for%2026.1.2%2B.zip",
+      "size": 374364,
+      "sha1": "3bf95962820b52589337e98f7f7b0b824932ef2f",
+      "sha512": "6f6b4582b50e35dbffdd890c05efb2a971418eaad25f93dee1c1349178b7d294244bf53116a67a0b71e8dbde7f77017e01b0e5b5bbb9dec28e6173d3f97cd117",
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "why": "Dark, clean SkyBlock menus on top"
     }
   ]
 }

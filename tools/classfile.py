@@ -1,9 +1,10 @@
 """Minimal reader for compiled Java .class files. Standard library only.
 
-It reads just enough to answer one question: which fields does a class declare, with what
-type, and which runtime-visible annotations are on them. configure.py uses that to find
-SkyHanni's @FeatureToggle switches inside the mod jar, which is the same list SkyHanni's own
-"turn all on" button (/shdefaultoptions) works from.
+It reads just enough to answer two questions: which fields does a class declare, with what
+type and which runtime-visible annotations, and which true/false value does the constructor
+give each boolean field. configure.py uses that to find SkyHanni's @FeatureToggle switches
+inside the mod jar (the same list SkyHanni's own /shdefaultoptions works from) and to put
+them back to SkyHanni's defaults.
 
 Format reference: JVM spec, chapter 4 ("The class File Format").
 """
@@ -19,6 +20,7 @@ class Field:
     name: str
     descriptor: str  # e.g. "Z" for boolean, "Lcom/example/Foo;" for an object
     annotations: dict[str, dict] = field(default_factory=dict)  # annotation type -> {element: value}
+    default: bool | None = None  # for booleans: the constant the constructor stores, if any
 
 
 class _Reader:
@@ -68,7 +70,9 @@ def parse(data: bytes) -> tuple[str, list[Field]]:
         elif tag in (5, 6):  # Long, Double take two slots
             r.u4(), r.u4()
             i += 1
-        elif tag in (9, 10, 11, 12, 17, 18):  # refs, NameAndType, (Invoke)Dynamic
+        elif tag in (9, 12):  # Fieldref (class, name-and-type), NameAndType (name, descriptor)
+            pool[i] = ("fieldref" if tag == 9 else "nat", r.u2(), r.u2())
+        elif tag in (10, 11, 17, 18):  # method refs, (Invoke)Dynamic
             r.u2(), r.u2()
         elif tag == 15:  # MethodHandle
             r.u1(), r.u2()
@@ -121,4 +125,45 @@ def parse(data: bytes) -> tuple[str, list[Field]]:
                     f.annotations[type_name] = values
             r.pos = end
         fields.append(f)
+
+    # Constructors: `aload_0; iconst_0|iconst_1; putfield this.<boolean>` is how both javac and
+    # kotlinc store a boolean field's initial value (`var enabled = true`). A boxed switch
+    # (`Property.of(true)`) puts two static calls between the constant and the putfield.
+    by_name = {f.name: f for f in fields}
+
+    def store_target(code: bytes, at: int, wanted: str):
+        if at + 2 >= len(code) or code[at] != 0xB5:  # putfield
+            return None
+        ref = pool[(code[at + 1] << 8) | code[at + 2]]
+        if not (isinstance(ref, tuple) and ref[0] == "fieldref"):
+            return None
+        owner, nat = pool[pool[ref[1]][1]], pool[ref[2]]
+        target = by_name.get(pool[nat[1]])
+        if owner != class_name or not target or target.default is not None:
+            return None
+        return target if pool[nat[2]] == wanted or (wanted == "boxed" and pool[nat[2]].endswith("/Property;")) else None
+    for _ in range(r.u2()):
+        r.u2()  # access flags
+        method_name = pool[r.u2()]
+        r.u2()  # descriptor
+        for _ in range(r.u2()):
+            attr_name, length = pool[r.u2()], r.u4()
+            end = r.pos + length
+            if attr_name == "Code" and method_name == "<init>":
+                r.u2(), r.u2()  # max stack, max locals
+                code = r.take(r.u4())
+                for j in range(len(code) - 4):
+                    if code[j] != 0x2A or code[j + 1] not in (0x03, 0x04):  # aload_0; iconst_0/1
+                        continue
+                    target = store_target(code, j + 2, "Z")
+                    if target is None and code[j + 2] == 0xB8 and code[j + 5 : j + 6] == b"\xb8":
+                        k = j + 8  # after Boolean.valueOf + Property.of; kotlinc may add a null check:
+                        if code[k : k + 2] == b"\x59\x12" and code[k + 3 : k + 4] == b"\xb8":  # dup; ldc; invokestatic
+                            k += 6
+                        elif code[k : k + 2] == b"\x59\x13" and code[k + 4 : k + 5] == b"\xb8":  # dup; ldc_w; invokestatic
+                            k += 7
+                        target = store_target(code, k, "boxed")
+                    if target is not None:
+                        target.default = code[j + 1] == 0x04
+            r.pos = end
     return class_name, fields

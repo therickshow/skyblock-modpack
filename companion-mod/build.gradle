@@ -31,7 +31,6 @@ dependencies {
 	// Only needed to compile: the pack already contains these mods.
 	compileOnly "maven.modrinth:modmenu:${project.modmenu_version}"
 	compileOnly "maven.modrinth:sodium:${project.sodium_version}"
-	compileOnly "maven.modrinth:resourceful-config:${project.resourcefulconfig_version}"
 }
 
 processResources {

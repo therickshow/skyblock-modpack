@@ -92,10 +92,16 @@ def apply_keybinds(text: str, wanted: dict[str, str]) -> tuple[str, list[str]]:
 
 
 def skyhanni_feature_toggles(jar: Path) -> list[tuple[str, bool]]:
-    """(config path, value that means "on") for every @FeatureToggle in SkyHanni's config.
+    """(config path, value that means "on") for every @FeatureToggle in SkyHanni's config."""
+    return [(path, on_value) for path, on_value, _ in skyhanni_toggles_with_defaults(jar)]
+
+
+def skyhanni_toggles_with_defaults(jar: Path) -> list[tuple[str, bool, bool]]:
+    """(config path, value that means "on", SkyHanni's default) for every @FeatureToggle.
 
     Walks the config classes from the root the same way Gson serialises them (only @Expose
-    fields), so the dotted paths match config/skyhanni/config.json.
+    fields), so the dotted paths match config/skyhanni/config.json. The default is the value
+    the class's constructor assigns (a boolean with no initialiser is false).
     """
     classes: dict[str, list[classfile.Field]] = {}
     with zipfile.ZipFile(jar) as z:
@@ -109,7 +115,7 @@ def skyhanni_feature_toggles(jar: Path) -> list[tuple[str, bool]]:
     if SKYHANNI_ROOT not in classes:
         raise ConfigError(f"{jar.name} has no {SKYHANNI_ROOT}; SkyHanni's layout changed, update configure.py")
 
-    toggles: list[tuple[str, bool]] = []
+    toggles: list[tuple[str, bool, bool]] = []
 
     def walk(class_name: str, prefix: list[str], depth: int):
         for f in classes[class_name]:
@@ -119,7 +125,7 @@ def skyhanni_feature_toggles(jar: Path) -> list[tuple[str, bool]]:
             if FEATURE_TOGGLE in f.annotations:
                 # trueIsEnabled=false marks an inverted switch, where false means "on".
                 on_value = f.annotations[FEATURE_TOGGLE].get("trueIsEnabled", True)
-                toggles.append((".".join(path), on_value))
+                toggles.append((".".join(path), on_value, bool(f.default)))
             child = f.descriptor[1:-1] if f.descriptor.startswith("L") else None
             if child in classes and depth < 20:
                 walk(child, path, depth + 1)
@@ -128,8 +134,7 @@ def skyhanni_feature_toggles(jar: Path) -> list[tuple[str, bool]]:
     return toggles
 
 
-def enable_sections(config: dict, toggles: list[tuple[str, bool]], sections: list[str]) -> list[str]:
-    """Set every toggle inside `sections` to its "on" value. Returns the paths changed."""
+def _check_sections(config: dict, sections: list[str]):
     for section in sections:
         node = config
         for key in section.split("."):
@@ -137,8 +142,11 @@ def enable_sections(config: dict, toggles: list[tuple[str, bool]], sections: lis
         if not isinstance(node, dict):
             raise ConfigError(f"SkyHanni config has no section called {section!r}")
 
+
+def _set_toggles(config: dict, values: list[tuple[str, bool]], sections: list[str]) -> list[str]:
+    """Set each (path, value) whose path is inside `sections`. Returns the paths changed."""
     changed = []
-    for path, on_value in toggles:
+    for path, value in values:
         if not any(path == s or path.startswith(s + ".") for s in sections):
             continue
         *parents, leaf = path.split(".")
@@ -147,10 +155,97 @@ def enable_sections(config: dict, toggles: list[tuple[str, bool]], sections: lis
             node = node.get(key) if isinstance(node, dict) else None
         if not isinstance(node, dict) or not isinstance(node.get(leaf), bool):
             continue  # not in this config file (or not a plain on/off value): leave it alone
-        if node[leaf] != on_value:
-            node[leaf] = on_value
+        if node[leaf] != value:
+            node[leaf] = value
             changed.append(path)
     return changed
+
+
+def enable_sections(config: dict, toggles: list[tuple[str, bool]], sections: list[str]) -> list[str]:
+    """Set every toggle inside `sections` to its "on" value. Returns the paths changed."""
+    _check_sections(config, sections)
+    return _set_toggles(config, toggles, sections)
+
+
+def reset_sections(config: dict, toggles: list[tuple[str, bool, bool]], sections: list[str]) -> list[str]:
+    """Put every toggle inside `sections` back to SkyHanni's default. Returns the paths changed."""
+    _check_sections(config, sections)
+    return _set_toggles(config, [(path, default) for path, _, default in toggles], sections)
+
+
+# ─── any mod's JSON config: set values by dotted path ─────────────────────────
+
+
+def set_values(config: dict, wanted: dict, mod: str) -> list[str]:
+    """Set dotted-path values (e.g. "general.enableTips") in a mod's JSON config.
+
+    Refuses a path that isn't already in the file and a value of a different type, so a typo
+    or a renamed option fails loudly instead of being written somewhere the mod never reads.
+    """
+    changes = []
+    for path, value in wanted.items():
+        *parents, leaf = path.split(".")
+        node = config
+        for key in parents:
+            node = node.get(key) if isinstance(node, dict) else None
+        if not isinstance(node, dict) or leaf not in node:
+            raise ConfigError(f"{mod} has no setting called {path!r} (typo, or the mod renamed it)")
+        old = node[leaf]
+        numbers = (int, float)
+        same_kind = (type(old) is type(value)
+                     or (isinstance(old, numbers) and isinstance(value, numbers)
+                         and not isinstance(old, bool) and not isinstance(value, bool)))
+        if not same_kind or (type(old) is int and isinstance(value, float) and not value.is_integer()):
+            raise ConfigError(f"{mod} {path} holds a {type(old).__name__}, not a {type(value).__name__} like {value!r}")
+        if not isinstance(old, bool) and isinstance(old, numbers):
+            value = type(old)(value)  # 2 -> 2.0 for a decimal setting, 4.0 -> 4 for a whole-number one
+        if old != value:
+            node[leaf] = value
+            changes.append(f"{path}: {json.dumps(old)} -> {json.dumps(value)}")
+    return changes
+
+
+# ─── resource packs: options.txt ──────────────────────────────────────────────
+
+
+def apply_resourcepacks(text: str, files: list[str], available: set[str],
+                        allow_older: list[str] = ()) -> tuple[str, list[str]]:
+    """Turn resource packs on in options.txt text, in order (later ones draw on top).
+
+    Keeps built-in entries ("vanilla", "fabric", mod packs) where they are and replaces the
+    file/ packs with `files`. Refuses packs that aren't in the resourcepacks folder.
+
+    `allow_older` packs also go in incompatibleResourcePacks. A pack whose pack.mcmeta names
+    an older format is otherwise dropped from the list at startup; that list is where the
+    game records "Yes" on its "made for an older version" warning.
+    """
+    missing = [f for f in files if f not in available]
+    if missing:
+        raise ConfigError(f"not in the resourcepacks folder: {', '.join(missing)} "
+                          "(install the pack update first, or fix the file name)")
+    if stray := [f for f in allow_older if f not in files]:
+        raise ConfigError(f"allow_older lists packs that aren't in enable: {', '.join(stray)}")
+    newline = "\r\n" if "\r\n" in text else "\n"
+    lines = text.splitlines()
+    changes = []
+    for key, entries, default in (("resourcePacks", files, ["vanilla"]),
+                                  ("incompatibleResourcePacks", allow_older, [])):
+        index = next((i for i, l in enumerate(lines) if l.startswith(key + ":")), None)
+        current = json.loads(lines[index][len(key) + 1:]) if index is not None else []
+        builtin = [p for p in current if not p.startswith("file/")] or default
+        wanted = builtin + [f"file/{f}" for f in entries]
+        if wanted == current:
+            continue
+        line = f"{key}:" + json.dumps(wanted, ensure_ascii=False, separators=(",", ":"))
+        if index is None:
+            lines.append(line)
+        else:
+            lines[index] = line
+        label = "resource packs" if key == "resourcePacks" else "accepted as older-format"
+        changes.append(f"{label}: {', '.join(current) or '(none)'} -> {', '.join(wanted) or '(none)'}")
+    if not changes:
+        return text, []
+    return newline.join(lines) + (newline if text.endswith(("\n", "\r\n")) else ""), changes
 
 
 # ─── Odin: enable modules by display name ─────────────────────────────────────
@@ -175,11 +270,27 @@ def enable_odin_modules(text: str, names: list[str]) -> tuple[str, list[str]]:
     return json.dumps(modules, indent=2, ensure_ascii=False), changes
 
 
+def disable_odin_modules(text: str, names: list[str]) -> tuple[str, list[str]]:
+    """Turn modules off in odin-config.json text. A module that isn't listed is already off."""
+    modules = json.loads(text) if text.strip() else []
+    if not isinstance(modules, list):
+        raise ConfigError("odin-config.json isn't a list of modules; Odin's format changed")
+    wanted = {n.lower() for n in names}
+    changes = []
+    for m in modules:
+        if isinstance(m, dict) and str(m.get("name", "")).lower() in wanted and m.get("enabled") is True:
+            m["enabled"] = False
+            changes.append(f"{m['name']}: off")
+    return json.dumps(modules, indent=2, ensure_ascii=False), changes
+
+
 def odin_names_not_in_jar(jar: Path, names: list[str]) -> list[str]:
-    """Module names that appear in none of Odin's feature classes (i.e. typos)."""
+    """Module names that appear in none of Odin's feature classes (i.e. typos). Like Odin
+    itself, ignores upper/lower case."""
     with zipfile.ZipFile(jar) as z:
         blob = b"".join(z.read(n) for n in z.namelist() if n.startswith(ODIN_MODULE_PACKAGE) and n.endswith(".class"))
-    return [n for n in names if n.encode("utf-8") not in blob]
+    blob = blob.lower()
+    return [n for n in names if n.lower().encode("utf-8") not in blob]
 
 
 # ─── instance helpers ─────────────────────────────────────────────────────────
@@ -227,32 +338,62 @@ def configure(instance: Path, settings: dict, dry_run: bool = False) -> dict[str
     report: dict[str, list[str]] = {}
     writes: dict[Path, str] = {}
 
+    options = instance / "options.txt"
+    options_text = read_exact(options)
     if keybinds := settings.get("keybinds"):
-        path = instance / "options.txt"
-        text, report["Keybinds"] = apply_keybinds(read_exact(path), keybinds)
-        if report["Keybinds"]:
-            writes[path] = text
+        options_text, report["Keybinds"] = apply_keybinds(options_text, keybinds)
+    if packs := settings.get("resourcepacks", {}).get("enable"):
+        folder = instance / "resourcepacks"
+        available = {p.name for p in folder.iterdir()} if folder.is_dir() else set()
+        options_text, report["Resource packs"] = apply_resourcepacks(
+            options_text, packs, available, settings["resourcepacks"].get("allow_older", []))
+    if options_text != read_exact(options):
+        writes[options] = options_text
 
-    if sections := settings.get("skyhanni", {}).get("enable_all_in"):
+    skyhanni = settings.get("skyhanni", {})
+    if skyhanni.get("enable_all_in") or skyhanni.get("reset_to_defaults_in") or skyhanni.get("set"):
         path = instance / "config" / "skyhanni" / "config.json"
         if not path.exists():
             raise ConfigError(f"{path} doesn't exist yet; start and close the game once")
-        toggles = skyhanni_feature_toggles(find_jar(instance, "skyhanni*.jar"))
         config = json.loads(read_exact(path))
-        changed = enable_sections(config, toggles, sections)
-        report["SkyHanni"] = [f"{p}: on" for p in changed]
-        if changed:
+        changes = []
+        if skyhanni.get("enable_all_in") or skyhanni.get("reset_to_defaults_in"):
+            # Paths in [skyhanni.set] are left to it, so a reset doesn't flip them back and
+            # forth (and report a change) on every run.
+            toggles = [t for t in skyhanni_toggles_with_defaults(find_jar(instance, "skyhanni*.jar"))
+                       if t[0] not in skyhanni.get("set", {})]
+            if sections := skyhanni.get("reset_to_defaults_in"):
+                changes += [f"{p}: back to default" for p in reset_sections(config, toggles, sections)]
+            if sections := skyhanni.get("enable_all_in"):
+                changes += [f"{p}: on" for p in enable_sections(config, [t[:2] for t in toggles], sections)]
+        changes += set_values(config, skyhanni.get("set", {}), "SkyHanni")
+        report["SkyHanni"] = changes
+        if changes:
             writes[path] = json.dumps(config, indent=2, ensure_ascii=False)
 
-    if names := settings.get("odin", {}).get("enable"):
+    if wanted := settings.get("skyblocker", {}).get("set"):
+        path = instance / "config" / "skyblocker.json"
+        if not path.exists():
+            raise ConfigError(f"{path} doesn't exist yet; start and close the game once")
+        config = json.loads(read_exact(path))
+        report["Skyblocker"] = set_values(config, wanted, "Skyblocker")
+        if report["Skyblocker"]:
+            writes[path] = json.dumps(config, indent=2, ensure_ascii=False)
+
+    odin = settings.get("odin", {})
+    if odin.get("enable") or odin.get("disable"):
+        if both := {n.lower() for n in odin.get("enable", [])} & {n.lower() for n in odin.get("disable", [])}:
+            raise ConfigError(f"Odin modules listed as both enable and disable: {', '.join(sorted(both))}")
         jar = find_jar(instance, "odin*.jar")
-        if missing := odin_names_not_in_jar(jar, names):
+        if missing := odin_names_not_in_jar(jar, odin.get("enable", []) + odin.get("disable", [])):
             raise ConfigError(f"Odin has no module called {', '.join(missing)}")
         path = instance / "config" / "odin" / "odin-config.json"
         text = read_exact(path) if path.exists() else ""
-        new_text, report["Odin"] = enable_odin_modules(text, names)
+        text, on = enable_odin_modules(text, odin.get("enable", []))
+        text, off = disable_odin_modules(text, odin.get("disable", []))
+        report["Odin"] = on + off
         if report["Odin"]:
-            writes[path] = new_text
+            writes[path] = text
 
     if writes and not dry_run:
         report["_backup"] = [str(backup(instance, [p for p in writes if p.exists()]))]
@@ -269,7 +410,7 @@ def main():
     parser.add_argument("--instance", type=Path, default=DEFAULT_INSTANCE, help="instance folder (has options.txt)")
     parser.add_argument("--settings", type=Path, default=SETTINGS_FILE)
     parser.add_argument("--dry-run", action="store_true", help="show what would change, write nothing")
-    parser.add_argument("--verbose", action="store_true", help="list every SkyHanni switch changed")
+    parser.add_argument("--verbose", action="store_true", help="list every SkyHanni switch changed one by one")
     args = parser.parse_args()
 
     try:
@@ -284,12 +425,16 @@ def main():
         if section.startswith("_"):
             continue
         print(f"{section}: {verb.lower()} {len(changes)}")
-        shown = changes if (args.verbose or section != "SkyHanni") else []
-        if section == "SkyHanni" and changes and not args.verbose:
-            by_top = {}
-            for c in changes:
-                by_top[c.split(".")[0]] = by_top.get(c.split(".")[0], 0) + 1
-            shown = [f"{top}: {n} switches turned on" for top, n in by_top.items()]
+        shown = changes
+        if section == "SkyHanni" and not args.verbose:
+            # Bulk resets/enables are summarised per section; individual settings are listed.
+            bulk = [c for c in changes if c.endswith((": on", ": back to default"))]
+            by_top: dict[tuple[str, str], int] = {}
+            for c in bulk:
+                key = (c.split(".")[0], "turned on" if c.endswith(": on") else "put back to SkyHanni's default")
+                by_top[key] = by_top.get(key, 0) + 1
+            shown = [f"{top}: {n} switches {what}" for (top, what), n in by_top.items()]
+            shown += [c for c in changes if c not in bulk]
         for line in shown:
             print(f"  {line}")
     if backup_path := report.get("_backup"):

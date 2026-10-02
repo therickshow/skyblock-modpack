@@ -3,6 +3,16 @@
 # Close the game before running it, because Minecraft rewrites options.txt when it exits.
 #
 # Every run first saves a backup of the files it touches to <instance>/settings-backups/.
+#
+# ─── Who does what ────────────────────────────────────────────────────────────────
+# Each kind of information comes from ONE mod, so nothing is shown twice:
+#   Skyblocker  dungeons, mining, slayers, Kuudra, Galatea (foraging/hunting), tab HUD and
+#               health/mana bars, SkyBlock XP chat lines, item tooltips, profile viewer (/pv)
+#   SkyHanni    Garden and farming, fishing, Diana, the Rift, Hoppity / chocolate factory,
+#               Trevor the Trapper, Crimson Isle reputation quests
+#   Odin        dungeon boss timers (F6/F7) and a couple of Kuudra extras Skyblocker lacks
+#   Enhanced SkyRecipes  recipes and item list
+# Pop-up titles from both Skyblocker and SkyHanni sit at the top of the screen, not the middle.
 
 # ─── Keybinds (options.txt) ───────────────────────────────────────────────────────
 # action = key. Action names are the part after "key_" in options.txt.
@@ -10,29 +20,120 @@
 # create a new clash.
 [keybinds]
 "key.modmenu.open_menu" = "key.keyboard.right.control"       # Mod Menu: was unbound
-"key.btrbz.toggle_bazaar_orders_hud" = "key.keyboard.end"    # was H, clashed with night vision
 "key.skyblocker.defaultTgl" = "key.keyboard.home"            # was M, clashed with warp menu
 "key.quickActions" = "key.keyboard.right.alt"                # vanilla; was G, clashed with fullbright
 
+# ─── Resource packs (options.txt) ─────────────────────────────────────────────────
+# Turned on in this order, bottom to top: later packs draw over earlier ones.
+[resourcepacks]
+enable = ["Clean PvP.zip", "Skyblock Dark UI 1.18 for 26.1.2+.zip"]
+# Clean PvP is published for 26.2 but its pack.mcmeta still says format 75 (26.2 is 88), so
+# the game calls it "made for an older version" and would drop it at startup. This is the
+# same as clicking "Yes" on that warning.
+allow_older = ["Clean PvP.zip"]
+
 # ─── SkyHanni ─────────────────────────────────────────────────────────────────────
-# Turn ON every switch SkyHanni marks as a feature (@FeatureToggle) inside these config
-# sections. That's what its own /shdefaultoptions "turn all on" does. Most SkyHanni
-# features only run on their own island or activity, so they switch themselves on and off.
-# Sections not listed keep SkyHanni's defaults. Dungeons are left to Skyblocker on purpose.
 [skyhanni]
-enable_all_in = ["garden", "fishing", "mining", "slayer", "event.diana"]
+# An earlier version of this file switched on EVERY feature in these sections, which is
+# where most of the chat spam and duplicate overlays came from. Put them back to SkyHanni's
+# own defaults (read from the mod itself), then make the specific changes below.
+reset_to_defaults_in = ["garden", "fishing", "mining", "slayer", "event.diana"]
+
+[skyhanni.set]
+# Pop-up titles: top centre (screen is 2560x1600 at GUI scale 3, so 853 wide; centre = 426).
+"gui.titlePosition.x" = 426
+"gui.titlePosition.y" = 70
+"gui.titlePosition.centerX" = true
+"gui.titlePosition.centerY" = false
+# Skyblocker already posts the SkyBlock XP lines.
+"chat.skyBlockXPInChat" = false
+# Hypixel already announces each visitor; no second chat line and no big title.
+"garden.visitors.notificationChat" = false
+"garden.visitors.notificationTitle" = false
+# Mining belongs to Skyblocker: drop SkyHanni's copies of its solvers.
+"mining.metalDetector.metalDetectorSolver" = false
+"mining.fossilExcavator.solver.enabled" = false
+# Posts the mineshaft type to party chat for you.
+"mining.glaciteMineshaft.mineshaftDetectionConfig.sendTypeToPartyChat" = false
+# Slayers belong to Skyblocker.
+"slayer.endermen.beacon.highlightBeacon" = false
+"slayer.vampire.ownBoss.highlight" = false
+"slayer.vampire.ownBoss.steakAlert" = false
+"slayer.vampire.ownBoss.twinClawsTitle" = false
+"slayer.vampire.othersBoss.highlight" = false
+"slayer.vampire.othersBoss.steakAlert" = false
+"slayer.vampire.othersBoss.twinClawsTitle" = false
+"slayer.vampire.coopBoss.highlight" = false
+"slayer.vampire.coopBoss.steakAlert" = false
+"slayer.vampire.coopBoss.twinClawsTitle" = false
+"slayer.questWarningTitle" = false
+"slayer.slayerTimeMessages.timeToKill" = false
+"slayer.slayerTimeMessages.questComplete" = false
+# Dungeons belong to Skyblocker (its Croesus helper and Goldor waypoints).
+"dungeon.croesusUnopenedChestTracker" = false
+"dungeon.chest.croesusLimit" = false
+"dungeon.terminalWaypoints" = false
+# Skyblocker warns about the quiver already.
+"combat.quiverConfig.lowQuiverNotification" = false
+"combat.quiverConfig.reminderAfterRun" = false
+# Galatea mob highlights and phantom muting: Skyblocker does these.
+"hunting.mobHighlight.hideonleaf.enabled" = false
+"hunting.mobHighlight.hideonsun.enabled" = false
+"foraging.mutePhantoms" = false
+
+# ─── Skyblocker ───────────────────────────────────────────────────────────────────
+[skyblocker.set]
+# Pop-up titles: top centre instead of the middle of the screen (-1 keeps it centred sideways).
+"uiAndVisuals.titleContainer.y" = 40
+# Chat tips ("Tip: check out...").
+"general.enableTips" = false
+# Enhanced SkyRecipes is the recipe browser; Skyblocker's own item list doubled it up.
+"general.itemList.enableItemList" = false
+"general.itemList.enableRecipeBook" = false
+# Garden belongs to SkyHanni. The greenhouse paste preview also read the clipboard every
+# frame, which flooded latest.log with thousands of errors.
+"farming.pestHighlighter.enabled" = false
+"farming.plotsWidget.enabled" = false
+"farming.visitorHelper.enabled" = false
+"farming.greenhouse.enabled" = false
+# Fishing, Diana, the Rift, Hoppity and Trevor belong to SkyHanni.
+"helpers.fishing.enableFishingHelper" = false
+"helpers.fishing.seaCreatureTimerNotification" = false
+"helpers.fishing.seaCreatureCapNotification" = false
+"helpers.mythologicalRitual.enableMythologicalRitualHelper" = false
+"otherLocations.rift.mirrorverseWaypoints" = false
+"otherLocations.rift.blobbercystGlow" = false
+"otherLocations.rift.highlightFoundEnigmaSouls" = false
+"helpers.chocolateFactory.enableChocolateFactoryHelper" = false
+"helpers.chocolateFactory.enableTimeTowerReminder" = false
+"helpers.chocolateFactory.enableEggFinder" = false
+"helpers.chocolateFactory.sendEggFoundMessages" = false
+"helpers.chocolateFactory.straySound" = false
+"otherLocations.barn.enablePeltAnimalHighlighter" = false
+"otherLocations.barn.enableCallTrevorMessage" = false
+# Ironman: no Auction House or Bazaar, so their prices and helpers are just background traffic.
+"general.itemTooltip.enableAvgBIN" = false
+"general.itemTooltip.enableLowestBIN" = false
+"general.itemTooltip.enableBazaarPrice" = false
+"general.itemTooltip.enableEstimatedItemValue" = false
+"helpers.itemPrice.enableItemPriceLookup" = false
+"helpers.bazaar.enableBazaarHelper" = false
+"helpers.bazaar.enableReorderHelper" = false
+"helpers.bazaar.enableOrderTracker" = false
+"uiAndVisuals.chestValue.enableChestValue" = false
 
 # ─── Odin ─────────────────────────────────────────────────────────────────────────
-# Odin starts with every module off. Turn on the end-game helpers that Skyblocker doesn't
-# already do. Names are Odin's display names (as shown in its Right Shift menu).
-# Deliberately left off: Odin's puzzle/terminal solvers, map and secret waypoints
-# (Skyblocker does those), and Mimic / Pre-Spot Alert (they post to party chat for you).
+# Odin starts with every module off. Names are Odin's display names (its Right Shift menu).
+# Deliberately left off: Odin's puzzle/terminal solvers, map and secret waypoints (Skyblocker
+# does those), and Mimic / Pre-Spot Alert (they post to party chat for you).
 [odin]
 enable = [
   # dungeon bosses
   "Wither Dragons", "Terracotta Timer", "King Relic", "Tick Timers", "Spirit Bear",
   # during runs
-  "Blood Camp", "Blessing Display", "Secret Clicked", "Invincibility Timer",
-  # Kuudra
-  "Kuudra Info", "Supply Helper", "Build Helper", "Pearl Waypoints", "Fresh Tools",
+  "Blood Camp", "Blessing Display", "Invincibility Timer",
+  # Kuudra: only what Skyblocker doesn't show (Kuudra's HP, Fresh Tools timer)
+  "Kuudra Info", "Fresh Tools",
 ]
+# Skyblocker draws the same Kuudra supply, ballista and pearl waypoints, and marks secrets.
+disable = ["Supply Helper", "Build Helper", "Pearl Waypoints", "Secret Clicked"]

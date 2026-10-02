@@ -82,11 +82,6 @@ class VersionTests(unittest.TestCase):
         self.assertEqual(props["modmenu_version"], locked["modmenu"])
         self.assertEqual(props["sodium_version"], locked["sodium"])
 
-    @unittest.skipUnless(HAVE_INSTANCE, "no local Modrinth instance")
-    def test_resourceful_config_matches_the_copy_inside_the_pack(self):
-        # Resourceful Config isn't its own Modrinth entry here: Feesh & co. bundle it.
-        self.assertEqual(instance_mod_versions().get("resourcefulconfig"), gradle_properties()["resourcefulconfig_version"])
-
 
 class MetadataTests(unittest.TestCase):
     def setUp(self):
@@ -112,7 +107,6 @@ class MetadataTests(unittest.TestCase):
 class ModIdTests(unittest.TestCase):
     def test_the_code_names_the_mods_we_expect(self):
         self.assertEqual(mod_ids_in_java_code(), {
-            "resourcefulconfig", "feesh", "skyblockpv", "authme",
             "sodium", "sodium-extra", "reeses-sodium-options", "catharsis",
         })
 

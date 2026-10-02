@@ -7,7 +7,8 @@
   python tools/modpack.py build [--version X] Write dist/<name>-<version>.mrpack from the lock.
 
 Mod jars are never downloaded here. The .mrpack lists Modrinth CDN URLs + hashes and the
-launcher (Modrinth App, Prism, ...) fetches and verifies them on install.
+launcher (Modrinth App, Prism, ...) fetches and verifies them on install. Resource packs
+([[resourcepack]] in mods.toml) work the same way and land in the instance's resourcepacks/.
 """
 
 from __future__ import annotations
@@ -71,10 +72,11 @@ def load_pack() -> dict:
     return tomllib.loads(PACK_FILE.read_text(encoding="utf-8"))
 
 
-def load_mod_list() -> list[dict]:
-    mods = tomllib.loads(MODS_FILE.read_text(encoding="utf-8")).get("mod", [])
+def load_mod_list(kind: str = "mod") -> list[dict]:
+    """The [[mod]] (or [[resourcepack]]) entries of mods.toml, checked."""
+    entries = tomllib.loads(MODS_FILE.read_text(encoding="utf-8")).get(kind, [])
     seen = set()
-    for m in mods:
+    for m in entries:
         if "slug" not in m:
             fail(f"mods.toml entry without a slug: {m}")
         if m["slug"] in seen:
@@ -82,7 +84,7 @@ def load_mod_list() -> list[dict]:
         if m.get("channel", "release") not in CHANNELS:
             fail(f"{m['slug']}: channel must be one of {CHANNELS}")
         seen.add(m["slug"])
-    return mods
+    return entries
 
 
 def load_lock() -> dict | None:
@@ -175,7 +177,9 @@ def cmd_update(only: list[str]):
     same_target = old.get("minecraft") == mc and old.get("loader", {}).get("name") == loader_name
     if only and not same_target:
         fail("Minecraft version or loader changed since the last lock; run a full `update` first")
-    unknown = [s for s in only if s not in listed_by_slug and s not in {m["slug"] for m in old.get("mods", [])}]
+    known = set(listed_by_slug) | {p["slug"] for p in load_mod_list("resourcepack")}
+    known |= {m["slug"] for m in old.get("mods", []) + old.get("resourcepacks", [])}
+    unknown = [s for s in only if s not in known]
     if unknown:
         fail(f"not in mods.toml or the lock file: {', '.join(unknown)}")
 
@@ -255,6 +259,7 @@ def cmd_update(only: list[str]):
         "minecraft": mc,
         "loader": {"name": loader_name, "version": loader_version},
         "mods": mods,
+        "resourcepacks": resolve_resourcepacks(mc, only, old),
     }
     LOCK_FILE.write_text(json.dumps(lock, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -267,9 +272,37 @@ def cmd_update(only: list[str]):
           f"for Minecraft {mc}, Fabric Loader {loader_version}.")
 
 
+def resolve_resourcepacks(mc: str, only: list[str], old: dict) -> list[dict]:
+    """Lock the [[resourcepack]] entries. Packs are versioned per Minecraft version, not per loader."""
+    listed = load_mod_list("resourcepack")
+    if not listed:
+        return []
+    old_by_slug = {p["slug"]: p for p in old.get("resourcepacks", [])}
+    projects = {p["slug"]: p for p in modrinth("/projects", ids=[e["slug"] for e in listed]) or []}
+    records = []
+    for entry in listed:
+        project = projects.get(entry["slug"])
+        if project is None:
+            fail(f"resource pack not found on Modrinth: {entry['slug']}")
+        if only and entry["slug"] not in only and entry["slug"] in old_by_slug and not entry.get("pin"):
+            records.append(old_by_slug[entry["slug"]])
+            continue
+        versions = modrinth(f"/project/{project['id']}/version", loaders=["minecraft"], game_versions=[mc])
+        if not versions:
+            fail(f"resource pack {entry['slug']} has no build for Minecraft {mc}")
+        version, _ = pick_version(project, versions, entry)
+        record = make_record(project, version)
+        record["env"] = {"client": "required", "server": "unsupported"}
+        record.pop("requires", None)
+        record.pop("incompatible", None)
+        record["why"] = entry.get("why", "")
+        records.append(record)
+    return records
+
+
 def print_diff(old: dict, new: dict):
-    before = {m["slug"]: m["version"] for m in old.get("mods", [])}
-    after = {m["slug"]: m["version"] for m in new["mods"]}
+    before = {m["slug"]: m["version"] for m in old.get("mods", []) + old.get("resourcepacks", [])}
+    after = {m["slug"]: m["version"] for m in new["mods"] + new.get("resourcepacks", [])}
     lines = []
     if old.get("loader") and old["loader"] != new["loader"]:
         lines.append(f"  ~ fabric-loader  {old['loader']['version']} -> {new['loader']['version']}")
@@ -305,6 +338,11 @@ def write_readme_table(lock: dict):
     if libs:
         names = ", ".join(f"[{m['title']}](https://modrinth.com/mod/{m['slug']})" for m in libs)
         out += ["", f"Plus {len(libs)} libraries pulled in automatically: {names}."]
+    if packs := lock.get("resourcepacks"):
+        out += ["", "#### Resource packs", "", "| Pack | Version | What it does |", "| --- | --- | --- |"]
+        for p in packs:
+            version = p["version"].replace("|", "\\|")
+            out.append(f"| [{p['title']}](https://modrinth.com/resourcepack/{p['slug']}) | `{version}` | {p['why']} |")
 
     new_block = README_START + "\n" + "\n".join(out).strip() + "\n" + README_END
     text = re.sub(re.escape(README_START) + r".*?" + re.escape(README_END), lambda _: new_block, text, flags=re.S)
@@ -338,10 +376,10 @@ def cmd_build(version_override: str | None):
     mc = pack["minecraft"]["version"]
     if lock["minecraft"] != mc or lock["loader"]["name"] != pack["loader"]["name"]:
         fail("pack.toml changed Minecraft version/loader since the last lock; run `update`")
-    locked = {m["slug"] for m in lock["mods"]}
-    stale = [m["slug"] for m in load_mod_list() if m["slug"] not in locked]
+    locked = {m["slug"] for m in lock["mods"] + lock.get("resourcepacks", [])}
+    stale = [m["slug"] for m in load_mod_list() + load_mod_list("resourcepack") if m["slug"] not in locked]
     if stale:
-        fail(f"mods.toml has mods that aren't locked yet ({', '.join(stale)}); run `update`")
+        fail(f"mods.toml has entries that aren't locked yet ({', '.join(stale)}); run `update`")
 
     info = pack["pack"]
     version = version_override or info["version"]
@@ -353,13 +391,14 @@ def cmd_build(version_override: str | None):
         "summary": info.get("summary", ""),
         "files": [
             {
-                "path": f"mods/{m['file']}",
+                "path": f"{folder}/{m['file']}",
                 "hashes": {"sha1": m["sha1"], "sha512": m["sha512"]},
                 "env": m["env"],
                 "downloads": [m["url"]],
                 "fileSize": m["size"],
             }
-            for m in lock["mods"]
+            for folder, entries in (("mods", lock["mods"]), ("resourcepacks", lock.get("resourcepacks", [])))
+            for m in entries
         ],
         "dependencies": {"minecraft": mc, "fabric-loader": lock["loader"]["version"]},
     }
@@ -383,7 +422,9 @@ def cmd_build(version_override: str | None):
                     overrides += 1
 
     size_kb = out.stat().st_size / 1024
-    print(f"Built {out.relative_to(ROOT)} ({len(index['files'])} mods, {overrides} override files, {size_kb:.1f} KB)")
+    packs = len(lock.get("resourcepacks", []))
+    print(f"Built {out.relative_to(ROOT)} ({len(lock['mods'])} mods, {packs} resource packs, "
+          f"{overrides} override files, {size_kb:.1f} KB)")
     print("Import it in Modrinth App (+ > Import) or Prism Launcher (Add Instance > Import).")
 
 

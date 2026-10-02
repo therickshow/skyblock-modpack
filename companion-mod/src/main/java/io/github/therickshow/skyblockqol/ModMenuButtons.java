@@ -22,16 +22,6 @@ public class ModMenuButtons implements ModMenuApi {
         FabricLoader loader = FabricLoader.getInstance();
         Map<String, ConfigScreenFactory<?>> buttons = new HashMap<>();
 
-        // These three keep their settings in the Resourceful Config library, which can build
-        // the screen for any mod that registered a config with it.
-        if (loader.isModLoaded("resourcefulconfig")) {
-            for (String modId : List.of("feesh", "skyblockpv", "authme")) {
-                if (loader.isModLoaded(modId)) {
-                    buttons.put(modId, ResourcefulConfigButton.forMod(modId));
-                }
-            }
-        }
-
         // Sodium's video settings screen also holds Sodium Extra's pages, and Reese's Sodium
         // Options restyles it, so all three buttons open the same screen.
         if (loader.isModLoaded("sodium")) {

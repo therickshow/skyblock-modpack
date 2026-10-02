@@ -61,9 +61,9 @@ class FakeModrinth:
             {"loader": {"version": "0.19.4", "stable": True}},
         ]
 
-    def add(self, slug, *versions, server_side="unsupported"):
+    def add(self, slug, *versions, server_side="unsupported", project_type="mod"):
         project = {"id": f"id-{slug}", "slug": slug, "title": slug.replace("-", " ").title(),
-                   "client_side": "required", "server_side": server_side}
+                   "client_side": "required", "server_side": server_side, "project_type": project_type}
         self.projects[project["id"]] = project
         self.versions[project["id"]] = list(versions)
         return project
@@ -78,8 +78,10 @@ class FakeModrinth:
             wanted = json.loads(query["ids"][0])
             return [p for p in self.projects.values() if p["id"] in wanted or p["slug"] in wanted]
         if m := re.fullmatch(r"/project/([^/]+)/version", path):
-            # The script must always ask for Fabric builds of the pack's Minecraft version.
-            assert json.loads(query["loaders"][0]) == ["fabric"], url
+            # The script must always ask for Fabric builds (resource packs: "minecraft" builds)
+            # of the pack's Minecraft version.
+            loader = "minecraft" if self.projects[m.group(1)]["project_type"] == "resourcepack" else "fabric"
+            assert json.loads(query["loaders"][0]) == [loader], url
             assert json.loads(query["game_versions"][0]) == [MC], url
             return self.versions.get(m.group(1))
         if m := re.fullmatch(r"/project/([^/]+)", path):
@@ -119,14 +121,16 @@ class PackTestCase(unittest.TestCase):
             encoding="utf-8",
         )
 
-    def write_mods(self, *entries):
-        """entries: slug strings, or dicts of mods.toml fields."""
+    def write_mods(self, *entries, packs=()):
+        """entries: slug strings, or dicts of mods.toml fields. packs: [[resourcepack]] slugs."""
         blocks = []
         for e in entries:
             e = {"slug": e} if isinstance(e, str) else e
             e.setdefault("category", "Main")
             e.setdefault("why", f"does {e['slug']} things")
             blocks.append("[[mod]]\n" + "".join(f'{k} = "{v}"\n' for k, v in e.items()))
+        for slug in packs:
+            blocks.append(f'[[resourcepack]]\nslug = "{slug}"\nwhy = "makes {slug} look nice"\n')
         (self.root / "mods.toml").write_text("\n".join(blocks), encoding="utf-8")
 
     def run_quiet(self, fn, *args):
@@ -381,6 +385,80 @@ class ReadmeTableTests(PackTestCase):
         self.assertIn(f"Minecraft **{MC}**, Fabric Loader **0.19.5**", readme)
 
 
+# ─── resource packs ───────────────────────────────────────────────────────────
+
+
+class ResourcePackTests(PackTestCase):
+    def add_pack(self, slug, number="1.0"):
+        version = make_version(slug, number)
+        version["files"][0]["filename"] = f"{slug} {number}.zip"
+        version["files"][0]["url"] = f"https://cdn.modrinth.com/data/{slug}/{number}.zip"
+        version["dependencies"] = []
+        return self.fake.add(slug, version, project_type="resourcepack")
+
+    def setUp(self):
+        super().setUp()
+        self.fake.add("app", make_version("app", "1.0"))
+        self.add_pack("dark-ui")
+        (self.root / "README.md").write_text("<!-- mods:start -->\n<!-- mods:end -->\n", encoding="utf-8")
+        self.write_mods("app", packs=["dark-ui"])
+
+    def test_pack_is_locked_separately_from_mods(self):
+        self.run_quiet(modpack.cmd_update, [])
+        lock = self.lock()
+        self.assertEqual([m["slug"] for m in lock["mods"]], ["app"])
+        [pack] = lock["resourcepacks"]
+        self.assertEqual((pack["slug"], pack["file"], pack["version"]), ("dark-ui", "dark-ui 1.0.zip", "1.0"))
+        self.assertEqual(pack["env"], {"client": "required", "server": "unsupported"})
+        self.assertEqual(pack["why"], "makes dark-ui look nice")
+        self.assertNotIn("requires", pack)
+
+    def test_pack_goes_in_the_resourcepacks_folder_of_the_mrpack(self):
+        self.run_quiet(modpack.cmd_update, [])
+        self.run_quiet(modpack.cmd_build, None)
+        with zipfile.ZipFile(self.root / "dist" / "Test-Pack-1.0.0.mrpack") as z:
+            paths = {f["path"] for f in json.loads(z.read("modrinth.index.json"))["files"]}
+        self.assertEqual(paths, {"mods/app-1.0.jar", "resourcepacks/dark-ui 1.0.zip"})
+
+    def test_readme_gets_a_resource_pack_table(self):
+        self.run_quiet(modpack.cmd_update, [])
+        readme = (self.root / "README.md").read_text(encoding="utf-8")
+        self.assertIn("#### Resource packs", readme)
+        self.assertIn("| [Dark Ui](https://modrinth.com/resourcepack/dark-ui) | `1.0` | makes dark-ui look nice |", readme)
+
+    def test_diff_shows_pack_changes(self):
+        self.run_quiet(modpack.cmd_update, [])
+        self.add_pack("dark-ui", "2.0")
+        out, _ = self.run_quiet(modpack.cmd_update, [])
+        self.assertIn("~ dark-ui  1.0 -> 2.0", out)
+
+    def test_partial_update_of_a_mod_keeps_the_pack(self):
+        self.run_quiet(modpack.cmd_update, [])
+        self.add_pack("dark-ui", "2.0")
+        self.run_quiet(modpack.cmd_update, ["app"])
+        self.assertEqual(self.lock()["resourcepacks"][0]["version"], "1.0")
+
+    def test_partial_update_can_name_a_pack(self):
+        self.run_quiet(modpack.cmd_update, [])
+        self.add_pack("dark-ui", "2.0")
+        self.run_quiet(modpack.cmd_update, ["dark-ui"])
+        self.assertEqual(self.lock()["resourcepacks"][0]["version"], "2.0")
+
+    def test_pack_missing_from_modrinth_fails(self):
+        self.write_mods("app", packs=["no-such-pack"])
+        self.assert_fails(modpack.cmd_update, [], message="resource pack not found on Modrinth: no-such-pack")
+
+    def test_pack_without_a_build_for_this_version_fails(self):
+        self.fake.versions["id-dark-ui"] = []
+        self.assert_fails(modpack.cmd_update, [], message="resource pack dark-ui has no build for Minecraft")
+
+    def test_build_fails_when_a_pack_is_not_locked(self):
+        self.run_quiet(modpack.cmd_update, [])
+        self.add_pack("new-pack")
+        self.write_mods("app", packs=["dark-ui", "new-pack"])
+        self.assert_fails(modpack.cmd_build, None, message="new-pack")
+
+
 # ─── build ────────────────────────────────────────────────────────────────────
 
 
@@ -511,6 +589,21 @@ class CommittedPackTests(unittest.TestCase):
     def test_no_two_mods_share_a_file_name(self):
         files = [m["file"] for m in self.lock["mods"]]
         self.assertEqual(len(files), len(set(files)))
+
+    def test_resource_packs_are_locked_with_full_hashes(self):
+        listed = [p["slug"] for p in modpack.load_mod_list("resourcepack")]
+        self.assertEqual([p["slug"] for p in self.lock["resourcepacks"]], listed)
+        for p in self.lock["resourcepacks"]:
+            with self.subTest(pack=p["slug"]):
+                self.assertTrue(p["url"].startswith("https://cdn.modrinth.com/"))
+                self.assertRegex(p["sha512"], r"^[0-9a-f]{128}$")
+                self.assertTrue(p["file"].endswith(".zip"))
+
+    def test_settings_toml_turns_on_exactly_the_locked_packs(self):
+        import tomllib
+        settings = tomllib.loads((REPO / "settings.toml").read_text(encoding="utf-8"))
+        self.assertEqual(sorted(settings["resourcepacks"]["enable"]),
+                         sorted(p["file"] for p in self.lock["resourcepacks"]))
 
     def test_known_risky_mods_stay_out(self):
         # Mouse Tweaks' scroll-to-move sends real clicks in SkyBlock's chest menus.
